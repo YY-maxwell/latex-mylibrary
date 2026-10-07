@@ -1,8 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{layout/page-margins}[2025/09/17 default settings for margins]
+\ProvidesPackage{layout/page-margins}[2026/10/07 default settings for margins]
 
-\RequirePackage[%
-    left=25truemm,%
-    right=25truemm,%
-    top=25truemm,%
-    bottom=25truemm]{geometry}
+% Some Japanese classes load geometry before user packages.
+\@ifpackageloaded{geometry}{}{\RequirePackage{geometry}}
+\geometry{left=25truemm,right=25truemm,top=25truemm,bottom=25truemm}

@@ -31,12 +31,13 @@
 \RequirePackage{etoolbox}% for eq/thm numbering
 \RequirePackage{amsthm}
 % user-defined
-\RequirePackage{base-packages}
-\RequirePackage{macros}
+\RequirePackage{core/packages}
+\RequirePackage{fonts/math-newcm-euler}
+\RequirePackage{core/macros}
 \RequirePackage{layout/page-margins,layout/head-foot}
 \RequirePackage{toc/toc-eng}
 \RequirePackage{boxstyle/hruled, boxstyle/plain, boxstyle/simpleboxed, boxstyle/westruled, boxstyle/proofstyle}
-\RequirePackage{hyperlinks}
+\RequirePackage{core/hyperlinks}
 
 
 % --- numbering systems for equation and theorem ---

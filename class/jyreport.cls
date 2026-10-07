@@ -5,13 +5,15 @@
 
 % --- 基本パッケージ ---
 \RequirePackage{etoolbox}
-\RequirePackage{base-packages}
-\RequirePackage{macros}
-\RequirePackage{font-ja}
+\RequirePackage{core/packages}
+\RequirePackage{fonts/math-newcm-euler}
+\RequirePackage{core/macros}
+\RequirePackage{fonts/japanese-luatex}
+\RequirePackage{layout/headings}
 \RequirePackage{layout/page-margins}
 \RequirePackage{toc/toc-ja}
 \RequirePackage{boxstyle/hruled, boxstyle/plain, boxstyle/simpleboxed, boxstyle/westruled, boxstyle/proofstyle}
-\RequirePackage{hyperlinks}
+\RequirePackage{core/hyperlinks}
 
 
 % --- 数式設定 ---
@@ -63,4 +65,3 @@
         \tcbtitle
     }
 }
-

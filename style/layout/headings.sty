@@ -1,0 +1,12 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{layout/headings}[2026/10/07 Japanese section heading style]
+
+\RequirePackage{titlesec}
+
+\titleformat{\section}{\Large\gtfamily}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{20pt}{10pt}
+
+\titleformat{\subsection}{\large\gtfamily}{\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}{\large\gtfamily}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{10pt}{5pt}

@@ -26,13 +26,15 @@
 % --- パッケージ --- %
 \RequirePackage{etoolbox}% for eq/thm numbering
 % user-defined
-\RequirePackage{base-packages}
-\RequirePackage{macros}
-\RequirePackage{font-ja}
+\RequirePackage{core/packages}
+\RequirePackage{fonts/math-newcm-euler}
+\RequirePackage{core/macros}
+\RequirePackage{fonts/japanese-luatex}
+\RequirePackage{layout/headings}
 \RequirePackage{layout/page-margins,layout/head-foot}
 \RequirePackage{toc/toc-ja}
 \RequirePackage{boxstyle/proofstyle, boxstyle/normal}
-\RequirePackage{hyperlinks}
+\RequirePackage{core/hyperlinks}
 
 % --- 定理環境，数式・定理番号の設定 --- %
 \mathtoolsset{showonlyrefs=true}% 数式環境の中で，のちに参照するもののみ番号を振る設定

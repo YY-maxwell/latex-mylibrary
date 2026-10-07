@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{base-packages}[2025/09/17 load fundamental packages and settings]
+\ProvidesPackage{core/packages}[2026/10/07 engine-independent packages]
 
 
 % math related packages
@@ -33,9 +33,3 @@
 % advanced lists
 \RequirePackage{enumitem}%
 
-
-% fonts
-\RequirePackage{fontspec}% system font selection (Latin scripts)
-\RequirePackage{unicode-math}% Unicode math fonts
-\setmathfont{New Computer Modern Math}% set default font for math 
-\setmathfont[range=\mathcal]{Euler Math}% for calligraphic letters
