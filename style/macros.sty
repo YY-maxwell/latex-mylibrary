@@ -1,44 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{macros}[2025/05/08 define fundamental macros]
 
-% --- arrows ---
+
+% arrows
 \newcommand{\ri}{\longrightarrow}
 \newcommand{\mono}{\rightarrowtail}% mono (injection)
 \newcommand{\epi}{\twoheadrightarrow}% epi (surjection)
-% \newcommand{\circlearrowright}{% circular arrow for commutativity
-%     \begin{tikzpicture}
-%     \draw[line width=0.45pt] (0,0) arc[radius=0.12, start angle=-50, end angle=280];
-%     \draw[line width=0.45pt] (-0.01, 0.07) to [out=-65, in=75] (0,0);
-%     \draw[line width=0.45pt] (0.065, 0.01) to [out=-180, in=30] (0,0);
-%     \end{tikzpicture}
-% }
-% \newcommand{\dashrightarrow}{% dashed right arrow
-%     \mathrel{%
-%         \tikz[baseline=-0.5ex]{%
-%             \draw[->, dashed, line width=0.5pt, dash pattern={on 0.2em off 0.2em}]
-%             (0,0) -- (1em,0);
-%         }
-%     }
-% }
-% \newcommand{\dashleftarrow}{% dashed left arrow
-%     \mathrel{%
-%         \tikz[baseline=-0.5ex]{%
-%             \draw[->, dashed, line width=0.5pt, dash pattern={on 0.2em off 0.2em}]
-%             (0,0) -- (-1em,0);
-%         }
-%     }
-% }
-% \newcommand{\longdashrightarrow}{
-%     \mathrel{
-%         \tikz[baseline=-0.5ex]{
-%             \draw[->, dashed, line width=0.5pt, dash pattern={on 0.2em off 0.2em}]
-%             (0,0) -- (1.5em,0);
-%         }
-%     }
-% }
 
 
-% --- calligraphic letters ---
+% calligraphic letters
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calB}{\mathcal{B}}
 \newcommand{\calC}{\mathcal{C}}
@@ -67,7 +37,7 @@
 \newcommand{\calZ}{\mathcal{Z}}
 
 
-% --- script letters ---
+% script letters
 \newcommand{\scrA}{\mathscr{A}}
 \newcommand{\scrB}{\mathscr{B}}
 \newcommand{\scrC}{\mathscr{C}}
@@ -96,7 +66,7 @@
 \newcommand{\scrZ}{\mathscr{Z}}
 
 
-% --- fraktur letters ---
+% fraktur letters
 \newcommand{\frakA}{\mathfrak{A}}
 \newcommand{\frakB}{\mathfrak{B}}
 \newcommand{\frakC}{\mathfrak{C}}
@@ -152,7 +122,7 @@
 \newcommand{\frakz}{\mathfrak{z}}
 
 
-% --- blackboard bold letters ---
+% blackboard bold letters
 \newcommand{\bbA}{\mathbb{A}}
 \newcommand{\bbC}{\mathbb{C}}
 \newcommand{\bbE}{\mathbb{E}}
@@ -168,44 +138,11 @@
 \newcommand{\bbV}{\mathbb{V}}
 \newcommand{\bbZ}{\mathbb{Z}}
 
-% --- underline command with adjustable vertical position --- %
-% Usage: \myunderline[0.6pt]{hogehoge}
-\RequirePackage{xfp} % ← 数値演算のために必要！
-\newcommand{\myunderline}[2][0.4pt]{%
-    \begingroup
-        \edef\linewidthval{#1}%
-        \edef\yshiftval{\fpeval{#1/2}}%
-        \tikz[baseline=(X.base)]{
-            \node[inner sep=0pt, outer sep=0pt, anchor=base] (X) {#2};
-            \draw[line width=\linewidthval]
-            ([yshift=-\yshiftval-1 pt]X.south west) -- ([yshift=- \yshiftval-1 pt]X.south east);
-        }%
-    \endgroup
-}
 
-% --- indented environment for explicit conditions --- %
-\RequirePackage{setspace}
-\newenvironment{condition}
-    {\list{}{%
-        \setlength{\leftmargin}{2em}% Left margin
-        \setlength{\rightmargin}{2em}% Right margin
-        \setlength{\topsep}{5pt}% Vertical space
-        \setlength{\partopsep}{0pt}%
-        \setlength{\parsep}{0pt}%
-        \setlength{\itemsep}{0pt}%
-        \setlength{\itemindent}{0pt}%
-        \setlength{\listparindent}{0pt}%
-    }%
-    \item\relax
-    \setlength{\parindent}{0pt}%
-    \setstretch{0.95}}
-    {\endlist}
-
-
-    % --- some algebraic notations ---
+% some algebraic notations
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Coker}{Coker}
-\DeclareMathOperator{\id}{id}% identity morphism
+\DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Spec}{Spec}
@@ -221,13 +158,9 @@
 \DeclareMathOperator{\Sym}{Sym}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-% \renewcommand{\Box}{◻︎}
-% \AtBeginDocument{%
-%     \renewcommand{\Re}{\operatorname{Re}}%
-%     \renewcommand{\Im}{\operatorname{Im}}%
-% }
 
-% --- categorical notations ---
+
+% categorical notations
 \newcommand{\Set}{\mathcal{S}\textrm{et}}
 \newcommand{\Top}{\mathcal{T}\textrm{op}}
 \newcommand{\Grp}{\mathcal{G}\textrm{rp}}
@@ -239,14 +172,47 @@
 \DeclareMathOperator{\Mod}{\mathcal{M}\textrm{od}}
 \DeclareMathOperator{\Coh}{\mathcal{C}\textrm{oh}}
 \DeclareMathOperator{\QCoh}{\mathcal{QC}\textrm{oh}}
-%\newcommand{\Set}{\mathscr{S}\hspace{-0.75pt}et}
-%\newcommand{\Top}{\mathscr{T}\hspace{-3pt}op}
-%\newcommand{\Grp}{\mathscr{G}rp}
-%\newcommand{\Ab}{\mathscr{A}b}
-%\newcommand{\Cring}{\symscr{C}\hspace{-1pt}\symscr{R}ing}
-%\newcommand{\Ring}{\mathscr{R}ing}
-%\newcommand{\Rng}{\mathscr{R}ng}
-%\newcommand{\Sch}{\mathscr{S}\hspace{-0.75pt}ch}
-%\newcommand{\Mod}{\mathscr{M}\!od}
-%\newcommand{\Coh}{\mathscr{C}\!oh}
-%\newcommand{\QCoh}{\mathscr{QC}\!oh}
+
+
+% underline command with adjustable vertical position
+% Usage: \myunderline[0.6pt]{hogehoge}
+\RequirePackage{xfp}
+\newcommand{\myunderline}[2][0.4pt]{%
+    \begingroup
+        \edef\linewidthval{#1}%
+        \edef\yshiftval{\fpeval{#1/2}}%
+        \tikz[baseline=(X.base)]{
+            \node[inner sep=0pt, outer sep=0pt, anchor=base] (X) {#2};
+            \draw[line width=\linewidthval]
+            ([yshift=-\yshiftval-1 pt]X.south west) -- ([yshift=- \yshiftval-1 pt]X.south east);
+        }%
+    \endgroup
+}
+
+
+% Indent both sides.
+\newenvironment{condition}[1][1.5em]
+    {\begin{list}{}{%
+        \setlength{\leftmargin}{#1}%
+        \setlength{\rightmargin}{#1}%
+        \setlength{\topsep}{5pt}%
+        \setlength{\parsep}{0pt}%
+        \setlength{\itemsep}{0pt}%
+    }\item\relax}
+    {\end{list}}
+
+
+% Indent the left side only.
+\newenvironment{indented}[1][1.5em]
+    {\begin{list}{}{%
+        \setlength{\leftmargin}{#1}%
+        \setlength{\rightmargin}{0pt}%
+        \setlength{\listparindent}{0pt}%
+        \setlength{\itemindent}{0pt}%
+        \setlength{\topsep}{0pt}%
+        \setlength{\partopsep}{0pt}%
+    }\item\relax}
+    {\end{list}}
+
+
+
