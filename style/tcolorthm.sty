@@ -1,0 +1,176 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{style/tcolorthm}[2026/10/08 Theorem environments based on tcolorbox]
+
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+\RequirePackage{xparse}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable,skins,theorems}
+
+\SetupKeyvalOptions{
+  family=tcolorthm,
+  prefix=tcolorthm@
+}
+\DeclareStringOption[english]{language}
+\DeclareStringOption[global]{numbering}
+\ProcessKeyvalOptions*
+
+\makeatletter
+
+% ========================================================================
+% Display names
+% ========================================================================
+
+\ifdefstring{\tcolorthm@language}{japanese}{
+  \def\tcolorthm@definitionname{定義}
+  \def\tcolorthm@theoremname{定理}
+  \def\tcolorthm@propositionname{命題}
+  \def\tcolorthm@lemmaname{補題}
+  \def\tcolorthm@corollaryname{系}
+  \def\tcolorthm@examplename{例}
+  \def\tcolorthm@remarkname{注意}
+  \def\tcolorthm@notationname{記法}
+  \def\tcolorthm@proofname{証明.}
+}{%
+  \def\tcolorthm@definitionname{Definition}
+  \def\tcolorthm@theoremname{Theorem}
+  \def\tcolorthm@propositionname{Proposition}
+  \def\tcolorthm@lemmaname{Lemma}
+  \def\tcolorthm@corollaryname{Corollary}
+  \def\tcolorthm@examplename{Example}
+  \def\tcolorthm@remarkname{Remark}
+  \def\tcolorthm@notationname{Notation}
+  \def\tcolorthm@proofname{Proof.}
+}
+
+% ========================================================================
+% Common tcolorbox styles
+% ========================================================================
+
+\tcbset{
+  tcolorthm/theorem/.style={
+    enhanced,
+    breakable,
+    boxrule=0pt,
+    frame hidden,
+    colback=white,
+    coltitle=black,
+    before skip=10pt,
+    after skip=10pt,
+  },
+  tcolorthm/proof/.style={
+    enhanced,
+    breakable,
+    boxrule=0.4pt,
+    colframe=black,
+    colback=white,
+    coltitle=black,
+    before skip=5pt,
+    after skip=5pt,
+  }
+}
+
+% ========================================================================
+% Numbered theorem environments
+% ========================================================================
+
+\def\tcolorthm@definitionoptions{}
+\ifdefstring{\tcolorthm@numbering}{section}{
+  \def\tcolorthm@definitionoptions{number within=section}
+}{}
+
+\expandafter\newtcbtheorem\expandafter[\tcolorthm@definitionoptions]
+  {tcolorthm@definition}{\tcolorthm@definitionname}
+  {tcolorthm/theorem}{tcolorthm:def}
+
+\newtcbtheorem[use counter from=tcolorthm@definition]
+  {tcolorthm@theorem}{\tcolorthm@theoremname}
+  {tcolorthm/theorem}{tcolorthm:thm}
+
+\newtcbtheorem[use counter from=tcolorthm@definition]
+  {tcolorthm@proposition}{\tcolorthm@propositionname}
+  {tcolorthm/theorem}{tcolorthm:prop}
+
+\newtcbtheorem[use counter from=tcolorthm@definition]
+  {tcolorthm@lemma}{\tcolorthm@lemmaname}
+  {tcolorthm/theorem}{tcolorthm:lem}
+
+\newtcbtheorem[use counter from=tcolorthm@definition]
+  {tcolorthm@corollary}{\tcolorthm@corollaryname}
+  {tcolorthm/theorem}{tcolorthm:cor}
+
+\newtcbtheorem[use counter from=tcolorthm@definition]
+  {tcolorthm@example}{\tcolorthm@examplename}
+  {tcolorthm/theorem}{tcolorthm:ex}
+
+\newcommand{\tcolorthm@setcurrentlabel}{%
+  \protected@edef\@currentlabel{\thetcbcounter}%
+}
+
+\NewDocumentEnvironment{definition}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@definition}{#1}{}}{\begin{tcolorthm@definition}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@definition}}
+
+\NewDocumentEnvironment{theorem}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@theorem}{#1}{}}{\begin{tcolorthm@theorem}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@theorem}}
+
+\NewDocumentEnvironment{proposition}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@proposition}{#1}{}}{\begin{tcolorthm@proposition}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@proposition}}
+
+\NewDocumentEnvironment{lemma}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@lemma}{#1}{}}{\begin{tcolorthm@lemma}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@lemma}}
+
+\NewDocumentEnvironment{corollary}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@corollary}{#1}{}}{\begin{tcolorthm@corollary}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@corollary}}
+
+\NewDocumentEnvironment{example}{o}
+  {\IfValueTF{#1}{\begin{tcolorthm@example}{#1}{}}{\begin{tcolorthm@example}{}{}}%
+    \tcolorthm@setcurrentlabel}
+  {\end{tcolorthm@example}}
+
+
+% ========================================================================
+% Unnumbered environments
+% ========================================================================
+
+\NewDocumentEnvironment{remark}{o}
+  {\IfValueTF{#1}
+    {\def\tcolorthm@currenttitle{\tcolorthm@remarkname\ #1}
+      \begin{tcolorbox}[tcolorthm/theorem,title={\tcolorthm@currenttitle}]}
+    {\begin{tcolorbox}[tcolorthm/theorem,title={\tcolorthm@remarkname}]}}
+  {\end{tcolorbox}}
+
+\NewDocumentEnvironment{notation}{o}
+  {\IfValueTF{#1}
+    {\def\tcolorthm@currenttitle{\tcolorthm@notationname\ #1}
+      \begin{tcolorbox}[tcolorthm/theorem,title={\tcolorthm@currenttitle}]}
+    {\begin{tcolorbox}[tcolorthm/theorem,title={\tcolorthm@notationname}]}}
+  {\end{tcolorbox}}
+
+
+% ========================================================================
+% Proof environments
+% ========================================================================
+
+\providecommand{\qed}{\hfill\textcolor{gray}{\scalebox{.5}[1]{$\blacksquare$}}}
+
+\NewDocumentEnvironment{proof}{O{\tcolorthm@proofname}}
+  {\par\noindent\textit{#1}\quad}
+  {\par}
+
+\NewDocumentEnvironment{boxedproof}{O{\tcolorthm@proofname}}
+  {\begin{tcolorbox}[tcolorthm/proof,title={#1}]}
+  {\end{tcolorbox}}
+
+\makeatother

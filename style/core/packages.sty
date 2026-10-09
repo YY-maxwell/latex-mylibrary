@@ -1,35 +1,24 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{core/packages}[2026/10/07 engine-independent packages]
+\ProvidesPackage{core/packages}[2026/10/08 Common engine-independent packages]
 
 
-% math related packages
-\RequirePackage{mathtools}% enhanced math environments
-\RequirePackage{amssymb}% 
-\RequirePackage{xfrac}% better fractions
-\RequirePackage{stmaryrd}% \llbracket \rrbracket, etc...
+% ========================================================================
+% Math-related packages
+% ========================================================================
+\RequirePackage{mathtools}% Enhanced math environments.
+\RequirePackage{amssymb}
+\RequirePackage{mathrsfs}% Script letters.
+\RequirePackage{xfrac}% Better fractions.
+\RequirePackage{stmaryrd}% \llbracket and \rrbracket.
 
 
-% tikz related packages
-\RequirePackage{tikz, tikz-cd}% drawing figures and commutative diagrams
-\usetikzlibrary{calc}% use tikz calculation library
+% ========================================================================
+% Colors
+% ========================================================================
+\RequirePackage{xcolor}
 
 
-% graphics
-\RequirePackage{graphicx}%
-
-
-% advanced commenting
-\RequirePackage{comment}
-
-
-% colors
-\RequirePackage{xcolor}%
-
-
-% boxed environments
-\RequirePackage[most]{tcolorbox}%
-
-
-% advanced lists
-\RequirePackage{enumitem}%
-
+% ========================================================================
+% Lists
+% ========================================================================
+\RequirePackage{enumitem}

@@ -1,14 +1,17 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{core/macros}[2026/10/07 shared macros]
+\ProvidesPackage{core/macros}[2026/10/08 Common mathematical and text macros]
 
-
-% arrows
+% ========================================================================
+% Arrows
+% ========================================================================
 \newcommand{\ri}{\longrightarrow}
 \newcommand{\mono}{\rightarrowtail}% mono (injection)
 \newcommand{\epi}{\twoheadrightarrow}% epi (surjection)
 
 
-% calligraphic letters
+% ========================================================================
+% Calligraphic letters
+% ========================================================================
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calB}{\mathcal{B}}
 \newcommand{\calC}{\mathcal{C}}
@@ -37,7 +40,9 @@
 \newcommand{\calZ}{\mathcal{Z}}
 
 
-% script letters
+% ========================================================================
+% Script letters
+% ========================================================================
 \newcommand{\scrA}{\mathscr{A}}
 \newcommand{\scrB}{\mathscr{B}}
 \newcommand{\scrC}{\mathscr{C}}
@@ -66,7 +71,9 @@
 \newcommand{\scrZ}{\mathscr{Z}}
 
 
-% fraktur letters
+% ========================================================================
+% Fraktur letters
+% ========================================================================
 \newcommand{\frakA}{\mathfrak{A}}
 \newcommand{\frakB}{\mathfrak{B}}
 \newcommand{\frakC}{\mathfrak{C}}
@@ -122,7 +129,9 @@
 \newcommand{\frakz}{\mathfrak{z}}
 
 
-% blackboard bold letters
+% ========================================================================
+% Blackboard-bold letters
+% ========================================================================
 \newcommand{\bbA}{\mathbb{A}}
 \newcommand{\bbC}{\mathbb{C}}
 \newcommand{\bbE}{\mathbb{E}}
@@ -139,7 +148,9 @@
 \newcommand{\bbZ}{\mathbb{Z}}
 
 
-% some algebraic notations
+% ========================================================================
+% Algebraic notation
+% ========================================================================
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\Coker}{Coker}
 \DeclareMathOperator{\id}{id}
@@ -160,7 +171,9 @@
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 
 
-% categorical notations
+% ========================================================================
+% Categorical notation
+% ========================================================================
 \newcommand{\Set}{\mathcal{S}\textrm{et}}
 \newcommand{\Top}{\mathcal{T}\textrm{op}}
 \newcommand{\Grp}{\mathcal{G}\textrm{rp}}
@@ -173,24 +186,9 @@
 \DeclareMathOperator{\Coh}{\mathcal{C}\textrm{oh}}
 \DeclareMathOperator{\QCoh}{\mathcal{QC}\textrm{oh}}
 
-
-% underline command with adjustable vertical position
-% Usage: \myunderline[0.6pt]{hogehoge}
-\RequirePackage{xfp}
-\newcommand{\myunderline}[2][0.4pt]{%
-    \begingroup
-        \edef\linewidthval{#1}%
-        \edef\yshiftval{\fpeval{#1/2}}%
-        \tikz[baseline=(X.base)]{
-            \node[inner sep=0pt, outer sep=0pt, anchor=base] (X) {#2};
-            \draw[line width=\linewidthval]
-            ([yshift=-\yshiftval-1 pt]X.south west) -- ([yshift=- \yshiftval-1 pt]X.south east);
-        }%
-    \endgroup
-}
-
-
-% Indent both sides.
+% ========================================================================
+% Indent on both sides
+% ========================================================================
 \newenvironment{condition}[1][1.5em]
     {\begin{list}{}{%
         \setlength{\leftmargin}{#1}%
@@ -202,7 +200,9 @@
     {\end{list}}
 
 
-% Indent the left side only.
+% ========================================================================
+% Indent from the left only
+% ========================================================================
 \newenvironment{indented}[1][1.5em]
     {\begin{list}{}{%
         \setlength{\leftmargin}{#1}%
@@ -213,5 +213,3 @@
         \setlength{\partopsep}{0pt}%
     }\item\relax}
     {\end{list}}
-
-
