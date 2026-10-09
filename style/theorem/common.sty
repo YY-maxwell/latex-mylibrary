@@ -1,0 +1,122 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/common}[2026/10/09 Common theorem environment structure]
+
+% This package defines the semantic theorem environment interface.
+% It does not create amsthm or tcolorbox environments itself.
+
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+
+\SetupKeyvalOptions{
+  family=mylibtheorem,
+  prefix=mylibtheorem@
+}
+\DeclareStringOption[separate]{numbering}
+\DeclareStringOption[section]{numberwithin}
+\DeclareStringOption[]{thmnumberwithin}
+\DeclareStringOption[]{eqnumberwithin}
+\ProcessKeyvalOptions*
+
+\makeatletter
+
+% ------------------------------------------------------------------------
+% Display names.  A future language package can redefine these commands
+% without copying the theorem styles or backend implementation.
+% ------------------------------------------------------------------------
+\newcommand{\mylib@theoremname@definition}{Definition}
+\newcommand{\mylib@theoremname@theorem}{Theorem}
+\newcommand{\mylib@theoremname@proposition}{Proposition}
+\newcommand{\mylib@theoremname@lemma}{Lemma}
+\newcommand{\mylib@theoremname@corollary}{Corollary}
+\newcommand{\mylib@theoremname@example}{Example}
+\newcommand{\mylib@theoremname@remark}{Remark}
+\newcommand{\mylib@theoremname@notation}{Notation}
+\newcommand{\mylib@theoremname@proof}{Proof.}
+
+% The proof environments in both backends use the same manually inserted QED
+% command.  The public \qed command is bound by each backend after it has
+% loaded its own implementation package.
+\newcommand{\mylib@qed}{%
+  \hfill\textcolor{gray}{\scalebox{.5}[1]{$\blacksquare$}}%
+}
+
+% A single numberwithin option is the usual case.  The two more specific
+% options override it only when a document needs different reset units for
+% theorem and equation counters.
+\ifstrempty{\mylibtheorem@thmnumberwithin}{%
+  \let\mylib@thmnumberwithin\mylibtheorem@numberwithin
+}{%
+  \let\mylib@thmnumberwithin\mylibtheorem@thmnumberwithin
+}
+\ifstrempty{\mylibtheorem@eqnumberwithin}{%
+  \let\mylib@eqnumberwithin\mylibtheorem@numberwithin
+}{%
+  \let\mylib@eqnumberwithin\mylibtheorem@eqnumberwithin
+}
+
+% Equation numbering is common to both theorem backends.
+\newcommand{\mylib@applyequationnumbering}{%
+  \ifdefstring{\mylib@eqnumberwithin}{section}{%
+    \numberwithin{equation}{section}%
+  }{%
+    \ifdefstring{\mylib@eqnumberwithin}{subsection}{%
+      \numberwithin{equation}{subsection}%
+    }{%
+      \renewcommand{\theequation}{\arabic{equation}}%
+    }%
+  }%
+}
+\mylib@applyequationnumbering
+
+% ------------------------------------------------------------------------
+% Theorem-option registry.
+% Appearance packages register the complete tcolorbox option list for each
+% semantic environment.  The backend reads the registry when it materializes
+% environments.
+% ------------------------------------------------------------------------
+\newcommand{\mylib@theoremoptions@definition}{}
+\newcommand{\mylib@theoremoptions@theorem}{}
+\newcommand{\mylib@theoremoptions@proposition}{}
+\newcommand{\mylib@theoremoptions@lemma}{}
+\newcommand{\mylib@theoremoptions@corollary}{}
+\newcommand{\mylib@theoremoptions@example}{}
+\newcommand{\mylib@theoremoptions@remark}{}
+\newcommand{\mylib@theoremoptions@notation}{}
+\newcommand{\mylib@theoremoptions@proof}{}
+
+\newcommand{\mylib@theoremstyle@definition}{}
+\newcommand{\mylib@theoremstyle@theorem}{}
+\newcommand{\mylib@theoremstyle@proposition}{}
+\newcommand{\mylib@theoremstyle@lemma}{}
+\newcommand{\mylib@theoremstyle@corollary}{}
+\newcommand{\mylib@theoremstyle@example}{}
+\newcommand{\mylib@theoremstyle@remark}{}
+\newcommand{\mylib@theoremstyle@notation}{}
+
+\newcommand{\mylib@registertheoremoptions}[2]{%
+  \expandafter\def\csname mylib@theoremoptions@#1\endcsname{#2}%
+}
+
+\newcommand{\mylib@theoremoptions}[1]{%
+  \csname mylib@theoremoptions@#1\endcsname
+}
+
+\newcommand{\mylib@registertheoremstyle}[2]{%
+  \expandafter\def\csname mylib@theoremstyle@#1\endcsname{#2}%
+}
+
+\newcommand{\mylib@theoremstyle}[1]{%
+  \csname mylib@theoremstyle@#1\endcsname
+}
+
+\newcommand{\mylib@theoremname}[1]{%
+  \csname mylib@theoremname@#1\endcsname
+}
+
+\makeatother
+
+\endinput

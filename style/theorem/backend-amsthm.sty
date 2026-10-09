@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/backend-amsthm}[2026/10/09 amsthm theorem backend]
+
+% This backend materializes the semantic theorem interface using amsthm.
+% theorem/normal.sty must be loaded first so that theorem styles are registered.
+
+\RequirePackage{theorem/common}
+\RequirePackage{amsthm}
+
+\makeatletter
+
+% Do not use amsthm's automatic QED mechanism.  The document author writes
+% \qed explicitly, just as with the tcolorbox backend.
+\renewcommand{\qed}{\mylib@qed}
+
+\theoremstyle{\mylib@theoremstyle{definition}}
+\ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \newtheorem{definition}[equation]{\mylib@theoremname{definition}}%
+}{%
+  \ifdefstring{\mylib@thmnumberwithin}{section}{%
+    \newtheorem{definition}{\mylib@theoremname{definition}}[section]%
+  }{%
+    \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
+      \newtheorem{definition}{\mylib@theoremname{definition}}[subsection]%
+    }{%
+      \newtheorem{definition}{\mylib@theoremname{definition}}%
+    }%
+  }%
+}
+
+\theoremstyle{\mylib@theoremstyle{theorem}}
+\newtheorem{theorem}[definition]{\mylib@theoremname{theorem}}
+\newtheorem{proposition}[definition]{\mylib@theoremname{proposition}}
+\newtheorem{lemma}[definition]{\mylib@theoremname{lemma}}
+\newtheorem{corollary}[definition]{\mylib@theoremname{corollary}}
+
+\theoremstyle{\mylib@theoremstyle{example}}
+\newtheorem{example}[definition]{\mylib@theoremname{example}}
+
+\theoremstyle{\mylib@theoremstyle{remark}}
+\newtheorem*{remark}{\mylib@theoremname{remark}}
+\newtheorem*{notation}{\mylib@theoremname{notation}}
+
+\renewenvironment{proof}[1][\mylib@theoremname{proof}]{%
+  \par
+  \normalfont
+  \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\itshape #1]\ignorespaces
+}{%
+  \endtrivlist\@endpefalse
+}
+
+\makeatother
+
+\endinput

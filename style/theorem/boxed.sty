@@ -1,0 +1,90 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/boxed}[2026/10/09 Boxed theorem appearance]
+
+% This package defines the complete tcolorbox appearance of each semantic
+% theorem environment.  It does not define the public environments;
+% theorem/backend-tcolorbox.sty does that.
+
+\RequirePackage{theorem/common}
+\RequirePackage{tcolorbox}
+\RequirePackage{boxstyle/westruled}
+\RequirePackage{boxstyle/simpleboxed}
+\RequirePackage{boxstyle/plain}
+\RequirePackage{boxstyle/proofstyle}
+
+\makeatletter
+
+% The names below are internal tcolorbox styles.  The complete appearance is
+% kept here, rather than being spread over the backend environment definitions.
+\tcbset{mylib/definition/.style={%
+  westruled,
+  line color=black,
+  separator sign=none,
+  fonttitle=\bfseries,
+  before upper={\tcbtitle\textbf{.}\;}
+}}
+
+\tcbset{mylib/theorem/.style={%
+  simpleboxed,
+  separator sign=none,
+  fonttitle=\bfseries,
+  fontupper=\itshape,
+  before skip=0pt,
+  after skip=0pt
+}}
+\tcbset{mylib/proposition/.style={%
+  simpleboxed,
+  separator sign=none,
+  fonttitle=\bfseries,
+  fontupper=\itshape
+}}
+\tcbset{mylib/lemma/.style={%
+  simpleboxed,
+  separator sign=none,
+  fonttitle=\bfseries,
+  fontupper=\itshape
+}}
+\tcbset{mylib/corollary/.style={%
+  simpleboxed,
+  separator sign=none,
+  fonttitle=\bfseries,
+  fontupper=\itshape
+}}
+
+\tcbset{mylib/example/.style={%
+  plain,
+  separator sign=none,
+  fonttitle=\bfseries,
+  before upper={\tcbtitle\textbf{.}\;}
+}}
+\tcbset{mylib/remark/.style={%
+  plain,
+  fonttitle=\bfseries,
+  before upper={\tcbtitle\;}
+}}
+\tcbset{mylib/notation/.style={%
+  plain,
+  fonttitle=\bfseries,
+  before upper={\tcbtitle\;}
+}}
+
+\tcbset{mylib/proof/.style={%
+  proofstyle,
+  line color=gray
+}}
+
+% Register only the style names.  The backend does not need to know the
+% individual visual settings.
+\mylib@registertheoremoptions{definition}{mylib/definition}
+\mylib@registertheoremoptions{theorem}{mylib/theorem}
+\mylib@registertheoremoptions{proposition}{mylib/proposition}
+\mylib@registertheoremoptions{lemma}{mylib/lemma}
+\mylib@registertheoremoptions{corollary}{mylib/corollary}
+\mylib@registertheoremoptions{example}{mylib/example}
+\mylib@registertheoremoptions{remark}{mylib/remark}
+\mylib@registertheoremoptions{notation}{mylib/notation}
+\mylib@registertheoremoptions{proof}{mylib/proof}
+
+\makeatother
+
+\endinput

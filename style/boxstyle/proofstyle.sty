@@ -1,5 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{boxstyle/proofstyle}[2025/05/10 westruled style]
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
 \newdimen\proofbox@linelength
 
 \tcbset{
@@ -64,15 +66,5 @@
         },
         line color/.store in=\tcbcol@overlay,
         line color=gray,% default
-    }
-}
-
-% --- proofbox --- %
-\newtcolorbox{proofbox}[1][\emph{Proof.}]{
-    proofstyle,
-    line color = gray,
-    title = {#1},
-    before upper={
-        \hspace*{-15pt}\tcbtitle\;
     }
 }

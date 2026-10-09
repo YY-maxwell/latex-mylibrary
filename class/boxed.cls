@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{normal}[2026/10/09 Minimal amsthm-based class]
+\ProvidesClass{boxed}[2026/10/09 tcolorbox theorem class]
 
-% The defaults are also the defaults of theorem/common.sty.
 \makeatletter
 \def\mylib@class@numbering{separate}
 \def\mylib@class@numberwithin{section}
@@ -21,7 +20,6 @@
 \DeclareOption{eqnumberwithin=section}{\def\mylib@class@eqnumberwithin{section}}
 \DeclareOption{eqnumberwithin=subsection}{\def\mylib@class@eqnumberwithin{subsection}}
 
-% Forward ordinary article options such as twoside.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \LoadClass{article}
@@ -42,8 +40,8 @@
 \RequirePackage{toc/toc-eng}
 \RequirePackage{core/hyperlinks}
 \RequirePackage{theorem/common}
-\RequirePackage{theorem/normal}
-\RequirePackage{theorem/backend-amsthm}
+\RequirePackage{theorem/boxed}
+\RequirePackage{theorem/backend-tcolorbox}
 
 \makeatother
 

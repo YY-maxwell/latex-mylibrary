@@ -1,0 +1,154 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/backend-tcolorbox}[2026/10/09 tcolorbox theorem backend]
+
+% This is an implementation layer.  It materializes the semantic theorem
+% interface and the style registry supplied by theorem/common.sty.
+
+\RequirePackage{theorem/common}
+\RequirePackage{tcolorbox}
+\RequirePackage{amssymb}
+\RequirePackage{graphicx}
+\tcbuselibrary{breakable,skins,theorems}
+
+\makeatletter
+
+% Internal proof box.  The visual appearance is supplied by proofstyle;
+% the tcolorbox backend owns the environment implementation.
+\newtcolorbox{proofbox}[1][\emph{Proof.}]{%
+  proofstyle,
+  line color=gray,
+  title={#1},
+  before upper={%
+    \hspace*{-15pt}\tcbtitle\;
+  }%
+}
+
+% The definition counter is the common counter for separate theorem-like
+% environments.  In shared mode it is the equation counter instead.
+\ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \def\mylib@definitioncounteroptions{use counter=equation}%
+}{%
+  \newcounter{mylib@definition}
+  \ifdefstring{\mylib@thmnumberwithin}{section}{%
+    \@addtoreset{mylib@definition}{section}%
+    \renewcommand{\themylib@definition}{\thesection.\arabic{mylib@definition}}%
+  }{%
+    \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
+      \@addtoreset{mylib@definition}{subsection}%
+      \renewcommand{\themylib@definition}{\thesubsection.\arabic{mylib@definition}}%
+    }{%
+      \renewcommand{\themylib@definition}{\arabic{mylib@definition}}%
+    }%
+  }%
+  \def\mylib@definitioncounteroptions{use counter=mylib@definition}%
+}
+
+\expandafter\newtcbtheorem\expandafter[\mylib@definitioncounteroptions]
+{mylib@definition}
+  {\mylib@theoremname{definition}}
+  {\mylib@theoremoptions{definition}}
+  {def}
+
+\newtcbtheorem[
+  use counter from=mylib@definition
+]{mylib@theorem}
+  {\mylib@theoremname{theorem}}
+  {\mylib@theoremoptions{theorem}}
+  {thm}
+
+\newtcbtheorem[
+  use counter from=mylib@definition
+]{mylib@proposition}
+  {\mylib@theoremname{proposition}}
+  {\mylib@theoremoptions{proposition}}
+  {prop}
+
+\newtcbtheorem[
+  use counter from=mylib@definition
+]{mylib@lemma}
+  {\mylib@theoremname{lemma}}
+  {\mylib@theoremoptions{lemma}}
+  {lem}
+
+\newtcbtheorem[
+  use counter from=mylib@definition
+]{mylib@corollary}
+  {\mylib@theoremname{corollary}}
+  {\mylib@theoremoptions{corollary}}
+  {cor}
+
+\newtcbtheorem[
+  use counter from=mylib@definition
+]{mylib@example}
+  {\mylib@theoremname{example}}
+  {\mylib@theoremoptions{example}}
+  {ex}
+
+\newcommand{\mylib@setcurrentlabel}{%
+  \protected@edef\@currentlabel{\thetcbcounter}%
+}
+
+\NewDocumentEnvironment{definition}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@definition}{#1}{}{}}
+    {\begin{mylib@definition}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@definition}}
+
+\NewDocumentEnvironment{theorem}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@theorem}{#1}{}{}}
+    {\begin{mylib@theorem}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@theorem}}
+
+\NewDocumentEnvironment{proposition}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@proposition}{#1}{}{}}
+    {\begin{mylib@proposition}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@proposition}}
+
+\NewDocumentEnvironment{lemma}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@lemma}{#1}{}{}}
+    {\begin{mylib@lemma}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@lemma}}
+
+\NewDocumentEnvironment{corollary}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@corollary}{#1}{}{}}
+    {\begin{mylib@corollary}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@corollary}}
+
+\NewDocumentEnvironment{example}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@example}{#1}{}{}}
+    {\begin{mylib@example}{}{}}%
+    \mylib@setcurrentlabel}
+  {\end{mylib@example}}
+
+\NewDocumentEnvironment{remark}{o}
+  {\IfValueTF{#1}
+    {\begin{tcolorbox}[\mylib@theoremoptions{remark},title={\mylib@theoremname{remark}\ #1}]}
+    {\begin{tcolorbox}[\mylib@theoremoptions{remark},title={\mylib@theoremname{remark}}]}}
+  {\end{tcolorbox}}
+
+\NewDocumentEnvironment{notation}{o}
+  {\IfValueTF{#1}
+    {\begin{tcolorbox}[\mylib@theoremoptions{notation},title={\mylib@theoremname{notation}\ #1}]}
+    {\begin{tcolorbox}[\mylib@theoremoptions{notation},title={\mylib@theoremname{notation}}]}}
+  {\end{tcolorbox}}
+
+% QED is inserted explicitly by the document author.
+\def\qed{\mylib@qed}
+
+\NewDocumentEnvironment{proof}{O{\mylib@theoremname{proof}}}
+  {\begin{proofbox}[#1]}
+  {\end{proofbox}}
+
+\makeatother
+
+\endinput

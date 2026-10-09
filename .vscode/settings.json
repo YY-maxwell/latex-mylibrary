@@ -1,7 +1,7 @@
 {
   // Settings for compiling the library's own test documents.
   // Select the engine explicitly because the test classes use different engines.
-  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build/vscode",
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/test/build",
   "latex-workshop.latex.recipe.default": "latexmk-lualatex",
   "latex-workshop.latex.autoBuild.run": "never",
 

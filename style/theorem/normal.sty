@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/normal}[2026/10/09 Normal theorem appearance]
+
+% The normal profile uses the standard theorem styles provided by amsthm.
+% The actual environments are created by theorem/backend-amsthm.sty.
+
+\RequirePackage{theorem/common}
+\RequirePackage{amsthm}
+
+\makeatletter
+
+\mylib@registertheoremstyle{definition}{definition}
+\mylib@registertheoremstyle{theorem}{plain}
+\mylib@registertheoremstyle{proposition}{plain}
+\mylib@registertheoremstyle{lemma}{plain}
+\mylib@registertheoremstyle{corollary}{plain}
+\mylib@registertheoremstyle{example}{definition}
+\mylib@registertheoremstyle{remark}{remark}
+\mylib@registertheoremstyle{notation}{remark}
+
+\makeatother
+
+\endinput
