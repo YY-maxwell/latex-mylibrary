@@ -19,11 +19,14 @@
 }{%
   \ifdefstring{\mylib@thmnumberwithin}{section}{%
     \newtheorem{definition}{\mylib@theoremname{definition}}[section]%
+    \renewcommand{\thedefinition}{\thesection.\arabic{definition}}%
   }{%
     \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
       \newtheorem{definition}{\mylib@theoremname{definition}}[subsection]%
+      \renewcommand{\thedefinition}{\thesubsection.\arabic{definition}}%
     }{%
       \newtheorem{definition}{\mylib@theoremname{definition}}%
+      \renewcommand{\thedefinition}{\arabic{definition}}%
     }%
   }%
 }

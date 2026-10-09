@@ -47,15 +47,15 @@
 % A single numberwithin option is the usual case.  The two more specific
 % options override it only when a document needs different reset units for
 % theorem and equation counters.
-\ifstrempty{\mylibtheorem@thmnumberwithin}{%
-  \let\mylib@thmnumberwithin\mylibtheorem@numberwithin
+\ifdefempty{\mylibtheorem@thmnumberwithin}{%
+  \edef\mylib@thmnumberwithin{\mylibtheorem@numberwithin}
 }{%
-  \let\mylib@thmnumberwithin\mylibtheorem@thmnumberwithin
+  \edef\mylib@thmnumberwithin{\mylibtheorem@thmnumberwithin}
 }
-\ifstrempty{\mylibtheorem@eqnumberwithin}{%
-  \let\mylib@eqnumberwithin\mylibtheorem@numberwithin
+\ifdefempty{\mylibtheorem@eqnumberwithin}{%
+  \edef\mylib@eqnumberwithin{\mylibtheorem@numberwithin}
 }{%
-  \let\mylib@eqnumberwithin\mylibtheorem@eqnumberwithin
+  \edef\mylib@eqnumberwithin{\mylibtheorem@eqnumberwithin}
 }
 
 % Equation numbering is common to both theorem backends.

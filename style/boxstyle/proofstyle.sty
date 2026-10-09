@@ -13,11 +13,14 @@
         sharp corners,% 角を直角
         colback = white,
         coltitle = black,
-        before skip = 0pt,  % ← 上の余白
+        boxsep = 0pt,
+        left = 2.5mm,
+        right = 2.5mm,
+        before skip = 5pt,  % ← 上の余白
         after skip = 5pt,   % ← 下の余白
         overlay unbroken={% ページまたぎがない場合
-            \path let \p1 = ([xshift=0.5pt,yshift=-23pt]frame.north west),
-                    \p2 = ([xshift=0.5pt,yshift= 7pt]frame.south west) in%
+            \path let \p1 = ([xshift=0.25pt,yshift=-23pt]frame.north west),
+                    \p2 = ([xshift=0.25pt,yshift= 7pt]frame.south west) in%
                     %\n1 = {\y1-\y2} in
             \pgfextra{%
                 \proofbox@linelength=\dimexpr\y1-\y2\relax
@@ -25,42 +28,42 @@
                 \ifdim\y1>\y2\relax
                     \ifdim\proofbox@linelength>15pt\relax
                         \draw[\tcbcol@overlay, line width=0.5pt]
-                        ([xshift=0.5pt,yshift=-23pt]frame.north west) --
-                        ([xshift=0.5pt,yshift= 7pt]frame.south west);
+                        ([xshift=0.25pt,yshift=-23pt]frame.north west) --
+                        ([xshift=0.25pt,yshift= 7pt]frame.south west);
                     \fi
                 \fi
             };%
         },
         overlay first={% ページをまたぐ時の最初のページ
-            \path let \p1 = ([xshift=0.5pt,yshift=-23pt]frame.north west),
-            \p2 = ([xshift=0.5pt]frame.south west) in
+            \path let \p1 = ([xshift=0.25pt,yshift=-23pt]frame.north west),
+            \p2 = ([xshift=0.25pt]frame.south west) in
             \pgfextra{%
                 \ifdim\y1>\y2\relax
                     \draw[\tcbcol@overlay, line width=0.5pt]
-                    ([xshift=0.5pt,yshift=-23pt]frame.north west) --
-                    ([xshift=0.5pt]frame.south west);
+                    ([xshift=0.25pt,yshift=-23pt]frame.north west) --
+                    ([xshift=0.25pt]frame.south west);
                 \fi
             };
         },
         overlay middle={% 2ページ目から最終ページの一つ前まで
-            \path let \p1 = ([xshift=0.5pt]frame.north west),
-                    \p2 = ([xshift=0.5pt]frame.south west) in
+            \path let \p1 = ([xshift=0.25pt]frame.north west),
+                    \p2 = ([xshift=0.25pt]frame.south west) in
             \pgfextra{%
                 \ifdim\y1>\y2\relax
-                \draw[\tcbcol@overlay, line width=0.5pt]
-                    ([xshift=0.5pt]frame.north west) --
-                    ([xshift=0.5pt]frame.south west);
+                    \draw[\tcbcol@overlay, line width=0.5pt]
+                    ([xshift=0.25pt]frame.north west) --
+                    ([xshift=0.25pt]frame.south west);
                 \fi
             };
         },
         overlay last={% 最終ページ
-            \path let \p1 = ([xshift=0.5pt]frame.north west),
-                    \p2 = ([xshift=0.5pt,yshift=6pt]frame.south west) in
+            \path let \p1 = ([xshift=0.25pt]frame.north west),
+                    \p2 = ([xshift=0.25pt,yshift=6pt]frame.south west) in
             \pgfextra{%
                 \ifdim\y1>\y2\relax
                 \draw[\tcbcol@overlay, line width=0.5pt]
-                    ([xshift=0.5pt]frame.north west) --
-                    ([xshift=0.5pt,yshift=7pt]frame.south west);
+                    ([xshift=0.25pt]frame.north west) --
+                    ([xshift=0.25pt,yshift=7pt]frame.south west);
                 \fi
             };
         },

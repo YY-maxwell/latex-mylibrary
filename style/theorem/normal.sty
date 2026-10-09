@@ -9,14 +9,30 @@
 
 \makeatletter
 
-\mylib@registertheoremstyle{definition}{definition}
-\mylib@registertheoremstyle{theorem}{plain}
-\mylib@registertheoremstyle{proposition}{plain}
-\mylib@registertheoremstyle{lemma}{plain}
-\mylib@registertheoremstyle{corollary}{plain}
-\mylib@registertheoremstyle{example}{definition}
-\mylib@registertheoremstyle{remark}{remark}
-\mylib@registertheoremstyle{notation}{remark}
+% Numbered theorem-like environments:
+%   (2.1) Definition Optional title
+% The complete heading is bold; the body remains upright for definitions and
+% examples, and italic for theorem-like assertions.
+\newtheoremstyle{mylibdefinition}%
+  {}{}{\upshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {\thmnumber{(#2)}\thmname{ #1}\thmnote{ #3}}
+
+\newtheoremstyle{mylibtheorem}%
+  {}{}{\itshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {\thmnumber{(#2)}\thmname{ #1}\thmnote{ #3}}
+
+\newtheoremstyle{mylibremark}%
+  {}{}{\upshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {\thmname{#1}\thmnote{ #3}}
+
+\mylib@registertheoremstyle{definition}{mylibdefinition}
+\mylib@registertheoremstyle{theorem}{mylibtheorem}
+\mylib@registertheoremstyle{proposition}{mylibtheorem}
+\mylib@registertheoremstyle{lemma}{mylibtheorem}
+\mylib@registertheoremstyle{corollary}{mylibtheorem}
+\mylib@registertheoremstyle{example}{mylibdefinition}
+\mylib@registertheoremstyle{remark}{mylibremark}
+\mylib@registertheoremstyle{notation}{mylibremark}
 
 \makeatother
 

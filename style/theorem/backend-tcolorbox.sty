@@ -19,7 +19,9 @@
   line color=gray,
   title={#1},
   before upper={%
-    \hspace*{-15pt}\tcbtitle\;
+    \noindent
+    \kern-\kvtcb@leftupper
+    \tcbtitle\;%
   }%
 }
 
@@ -145,7 +147,7 @@
 % QED is inserted explicitly by the document author.
 \def\qed{\mylib@qed}
 
-\NewDocumentEnvironment{proof}{O{\mylib@theoremname{proof}}}
+\NewDocumentEnvironment{proof}{O{\emph{\mylib@theoremname{proof}}}}
   {\begin{proofbox}[#1]}
   {\end{proofbox}}
 

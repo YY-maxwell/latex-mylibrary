@@ -1,6 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{boxstyle/westruled}[2025/05/10 westruled style]
 
+\tcbuselibrary{skins}
+
+\pgfkeys{
+    /tcb/westruledlinewidth/.store in=\tcbwestruledlinewidth,
+    /tcb/westruledlinewidth=2pt
+}
 
 \tcbset{
     % 左側に線を引く
@@ -12,12 +18,12 @@
         sharp corners,% 角を直角
         colback = white,
         coltitle = black,
-        before skip = 5pt,  % ← 上の余白
-        after skip = 5pt,   % ← 下の余白
-        overlay = {
-            \draw[\tcbcol@overlay, line width=2pt]
-            ([xshift=0mm]interior.south west) -- ([xshift=0mm]interior.north west); 
-        },
+        boxsep = 0pt,
+        left = 3.5mm,
+        right = 3.5mm,
+        borderline west={
+            \tcbwestruledlinewidth
+        }{0pt}{\tcbcol@overlay},
         line color/.store in=\tcbcol@overlay,
         line color=gray,% default
     }
