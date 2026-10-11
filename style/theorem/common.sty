@@ -40,7 +40,8 @@
 % The theorem styles use this command for the heading font.
 % Language-specific theorem packages may redefine it before a style is materialized.
 \newcommand{\mylibtheoremheadfont}{\bfseries}
-\newcommand{\mylibtheoremnumberfont}[1]{#1}
+\newcommand{\mylibtheoremreffont}[1]{#1}
+\newcommand{\parenref}[1]{\mylibtheoremreffont{(\ref{#1})}}
 
 % The proof environments in both backends use the same manually inserted QED symbol.
 % Each backend binds the public \qed command after loading its own implementation package, because amsthm provides \qedsymbol while the tcolorbox backend does not.

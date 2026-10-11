@@ -1,0 +1,10 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/typography-ja}[2026/10/11 Japanese theorem typography]
+
+% Japanese theorem headings and parenthesized references use sans-serif fonts.
+\RequirePackage{theorem/common}
+
+\renewcommand{\mylibtheoremheadfont}{\sffamily\bfseries}
+\renewcommand{\mylibtheoremreffont}[1]{\textsf{#1}}
+
+\endinput

@@ -2,18 +2,20 @@
 
 Personal LaTeX classes and styles for mathematical documents.
 
-## Current English classes
+## Current classes
 
 The current interface is provided by:
 
-- `normal`: theorem environments implemented with `amsthm`;
-- `boxed`: theorem and proof environments implemented with `tcolorbox`.
+- `normal`: English theorem environments implemented with `amsthm`;
+- `boxed`: English theorem and proof environments implemented with `tcolorbox`;
+- `jnormal`: Japanese theorem environments implemented with `amsthm`;
+- `jboxed`: Japanese theorem and proof environments implemented with `tcolorbox`.
 
-Both classes use the same document-side environment names:
+All four classes use the same document-side environment names:
 `definition`, `theorem`, `proposition`, `lemma`, `corollary`, `example`,
 `remark`, `notation`, and `proof`.
 
-The author writes `\qed` explicitly in a proof.  The two classes accept the
+The author writes `\qed` explicitly in a proof.  All four classes accept the
 same theorem syntax, for example:
 
 ```latex
@@ -68,6 +70,5 @@ style/
   toc/       Table-of-contents styles
 ```
 
-Japanese classes and engine-specific font settings are being migrated to this
-same interface.  The older Japanese classes currently in the tree are not the
-specification for the new interface.
+The older Japanese classes currently in the tree are not the specification for
+the new interface.

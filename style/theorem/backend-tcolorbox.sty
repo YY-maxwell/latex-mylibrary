@@ -34,13 +34,13 @@
   \newcounter{mylib@definition}
   \ifdefstring{\mylib@thmnumberwithin}{section}{%
     \@addtoreset{mylib@definition}{section}%
-    \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\thesection.\arabic{mylib@definition}}}%
+    \renewcommand{\themylib@definition}{\thesection.\arabic{mylib@definition}}%
   }{%
     \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
       \@addtoreset{mylib@definition}{subsection}%
-      \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\thesubsection.\arabic{mylib@definition}}}%
+      \renewcommand{\themylib@definition}{\thesubsection.\arabic{mylib@definition}}%
     }{%
-      \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\arabic{mylib@definition}}}%
+      \renewcommand{\themylib@definition}{\arabic{mylib@definition}}%
     }%
   }%
   \let\mylib@definitionnumberformat\themylib@definition

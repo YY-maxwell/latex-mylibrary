@@ -62,9 +62,9 @@
 \fi
 
 \RequirePackage{theorem/common}
-\RequirePackage{math/japanese}
+\RequirePackage{math/equation-ja}
 \RequirePackage{theorem/names-ja}
-\RequirePackage{theorem/japanese}
+\RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
 
