@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{theorem/backend-tcolorbox}[2026/10/09 tcolorbox theorem backend]
 
-% This is an implementation layer.  It materializes the semantic theorem
-% interface and the style registry supplied by theorem/common.sty.
+% This is an implementation layer.
+% It materializes the semantic theorem interface and the style registry supplied by theorem/common.sty.
 
 \RequirePackage{theorem/common}
 \RequirePackage{tcolorbox}
@@ -12,8 +12,8 @@
 
 \makeatletter
 
-% Internal proof box.  The visual appearance is supplied by proofstyle;
-% the tcolorbox backend owns the environment implementation.
+% Internal proof box.
+% The visual appearance is supplied by proofstyle; the tcolorbox backend owns the environment implementation.
 \newtcolorbox{proofbox}[1][\emph{Proof.}]{%
   proofstyle,
   line color=gray,
@@ -25,23 +25,25 @@
   }%
 }
 
-% The definition counter is the common counter for separate theorem-like
-% environments.  In shared mode it is the equation counter instead.
+% The definition counter is the common counter for separate theorem-like environments.
+% In shared mode it is the equation counter instead.
 \ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \let\mylib@equationnumberformat\theequation
   \def\mylib@definitioncounteroptions{use counter=equation}%
 }{%
   \newcounter{mylib@definition}
   \ifdefstring{\mylib@thmnumberwithin}{section}{%
     \@addtoreset{mylib@definition}{section}%
-    \renewcommand{\themylib@definition}{\thesection.\arabic{mylib@definition}}%
+    \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\thesection.\arabic{mylib@definition}}}%
   }{%
     \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
       \@addtoreset{mylib@definition}{subsection}%
-      \renewcommand{\themylib@definition}{\thesubsection.\arabic{mylib@definition}}%
+      \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\thesubsection.\arabic{mylib@definition}}}%
     }{%
-      \renewcommand{\themylib@definition}{\arabic{mylib@definition}}%
+      \renewcommand{\themylib@definition}{\mylibtheoremnumberfont{\arabic{mylib@definition}}}%
     }%
   }%
+  \let\mylib@definitionnumberformat\themylib@definition
   \def\mylib@definitioncounteroptions{use counter=mylib@definition}%
 }
 
@@ -50,6 +52,18 @@
   {\mylib@theoremname{definition}}
   {\mylib@theoremoptions{definition}}
   {def}
+
+% ``use counter=equation'' correctly shares the equation counter, but tcolorbox otherwise replaces its printed representation by \arabic{equation}.
+% Restore the equation representation so shared numbering also retains the section/subsection prefix.
+\ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \let\theequation\mylib@equationnumberformat
+  \expandafter\global\expandafter\let
+    \csname thetcb@cnt@mylib@definition\endcsname\mylib@equationnumberformat
+}{%
+  \let\themylib@definition\mylib@definitionnumberformat
+  \expandafter\global\expandafter\let
+    \csname thetcb@cnt@mylib@definition\endcsname\mylib@definitionnumberformat
+}
 
 \newtcbtheorem[
   use counter from=mylib@definition
@@ -145,7 +159,9 @@
   {\end{tcolorbox}}
 
 % QED is inserted explicitly by the document author.
-\def\qed{\mylib@qed}
+% Define the same public \qedsymbol interface as amsthm, then place it close to the final word without allowing a line break before it.
+\providecommand{\qedsymbol}{\mylib@defaultqedsymbol}
+\def\qed{\nobreak\hspace{1em}\qedsymbol}
 
 \NewDocumentEnvironment{proof}{O{\emph{\mylib@theoremname{proof}}}}
   {\begin{proofbox}[#1]}

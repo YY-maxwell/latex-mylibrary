@@ -34,11 +34,13 @@
   {\mylib@class@commonoptions}{theorem/common}
 
 \RequirePackage{core/packages}
+\RequirePackage{fonts/math-newcm-euler}
 \RequirePackage{core/macros}
 \RequirePackage{layout/page-margins}
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-eng}
 \RequirePackage{core/hyperlinks}
+\RequirePackage{math/equation}
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}

@@ -9,20 +9,36 @@
 
 \makeatletter
 
-% Numbered theorem-like environments:
-%   (2.1) Definition Optional title
-% The complete heading is bold; the body remains upright for definitions and
-% examples, and italic for theorem-like assertions.
+% The amsthm backend uses this registry for named theorem styles.
+\newcommand{\mylib@theoremstyle@definition}{}
+\newcommand{\mylib@theoremstyle@theorem}{}
+\newcommand{\mylib@theoremstyle@proposition}{}
+\newcommand{\mylib@theoremstyle@lemma}{}
+\newcommand{\mylib@theoremstyle@corollary}{}
+\newcommand{\mylib@theoremstyle@example}{}
+\newcommand{\mylib@theoremstyle@remark}{}
+\newcommand{\mylib@theoremstyle@notation}{}
+
+\newcommand{\mylib@registertheoremstyle}[2]{%
+  \expandafter\def\csname mylib@theoremstyle@#1\endcsname{#2}%
+}
+
+\newcommand{\mylib@theoremstyle}[1]{%
+  \csname mylib@theoremstyle@#1\endcsname
+}
+
+% Numbered theorem-like environments: (2.1) Definition Optional title.
+% The complete heading is bold; the body remains upright for definitions and examples, and italic for theorem-like assertions.
 \newtheoremstyle{mylibdefinition}%
-  {}{}{\upshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {}{}{\upshape}{}{\mylibtheoremheadfont}{}{5pt plus 1pt minus 1pt}%
   {\thmnumber{(#2)}\thmname{ #1}\thmnote{ #3}}
 
 \newtheoremstyle{mylibtheorem}%
-  {}{}{\itshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {}{}{\itshape}{}{\mylibtheoremheadfont}{}{5pt plus 1pt minus 1pt}%
   {\thmnumber{(#2)}\thmname{ #1}\thmnote{ #3}}
 
 \newtheoremstyle{mylibremark}%
-  {}{}{\upshape}{}{\bfseries}{}{5pt plus 1pt minus 1pt}%
+  {}{}{\upshape}{}{\mylibtheoremheadfont}{}{5pt plus 1pt minus 1pt}%
   {\thmname{#1}\thmnote{ #3}}
 
 \mylib@registertheoremstyle{definition}{mylibdefinition}

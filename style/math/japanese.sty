@@ -1,0 +1,19 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{math/japanese}[2026/10/11 Japanese equation tag typography]
+
+% Japanese equation tags use a regular sans-serif font.
+\RequirePackage{math/equation}
+
+\renewcommand{\mylibequationtagfont}[1]{\textsf{#1}}
+
+% Equation references use the same sans-serif font as the displayed equation tag.
+% This is applied at the beginning of the document so that the numbering unit
+% selected by theorem/common.sty is already reflected in \theequation.
+\AtBeginDocument{%
+  \let\mylib@japanese@equationnumber\theequation
+  \renewcommand{\theequation}{%
+    \mylibtheoremnumberfont{\mylib@japanese@equationnumber}%
+  }%
+}
+
+\endinput

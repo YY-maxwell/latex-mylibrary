@@ -24,8 +24,8 @@
 \makeatletter
 
 % ------------------------------------------------------------------------
-% Display names.  A future language package can redefine these commands
-% without copying the theorem styles or backend implementation.
+% Display names.
+% A future language package can redefine these commands without copying the theorem styles or backend implementation.
 % ------------------------------------------------------------------------
 \newcommand{\mylib@theoremname@definition}{Definition}
 \newcommand{\mylib@theoremname@theorem}{Theorem}
@@ -37,16 +37,19 @@
 \newcommand{\mylib@theoremname@notation}{Notation}
 \newcommand{\mylib@theoremname@proof}{Proof.}
 
-% The proof environments in both backends use the same manually inserted QED
-% command.  The public \qed command is bound by each backend after it has
-% loaded its own implementation package.
-\newcommand{\mylib@qed}{%
-  \hfill\textcolor{gray}{\scalebox{.5}[1]{$\blacksquare$}}%
+% The theorem styles use this command for the heading font.
+% Language-specific theorem packages may redefine it before a style is materialized.
+\newcommand{\mylibtheoremheadfont}{\bfseries}
+\newcommand{\mylibtheoremnumberfont}[1]{#1}
+
+% The proof environments in both backends use the same manually inserted QED symbol.
+% Each backend binds the public \qed command after loading its own implementation package, because amsthm provides \qedsymbol while the tcolorbox backend does not.
+\newcommand{\mylib@defaultqedsymbol}{%
+  \textcolor{gray}{\scalebox{.5}[1]{$\blacksquare$}}%
 }
 
-% A single numberwithin option is the usual case.  The two more specific
-% options override it only when a document needs different reset units for
-% theorem and equation counters.
+% A single numberwithin option is the usual case.
+% The two more specific options override it only when a document needs different reset units for theorem and equation counters.
 \ifdefempty{\mylibtheorem@thmnumberwithin}{%
   \edef\mylib@thmnumberwithin{\mylibtheorem@numberwithin}
 }{%
@@ -71,47 +74,6 @@
   }%
 }
 \mylib@applyequationnumbering
-
-% ------------------------------------------------------------------------
-% Theorem-option registry.
-% Appearance packages register the complete tcolorbox option list for each
-% semantic environment.  The backend reads the registry when it materializes
-% environments.
-% ------------------------------------------------------------------------
-\newcommand{\mylib@theoremoptions@definition}{}
-\newcommand{\mylib@theoremoptions@theorem}{}
-\newcommand{\mylib@theoremoptions@proposition}{}
-\newcommand{\mylib@theoremoptions@lemma}{}
-\newcommand{\mylib@theoremoptions@corollary}{}
-\newcommand{\mylib@theoremoptions@example}{}
-\newcommand{\mylib@theoremoptions@remark}{}
-\newcommand{\mylib@theoremoptions@notation}{}
-\newcommand{\mylib@theoremoptions@proof}{}
-
-\newcommand{\mylib@theoremstyle@definition}{}
-\newcommand{\mylib@theoremstyle@theorem}{}
-\newcommand{\mylib@theoremstyle@proposition}{}
-\newcommand{\mylib@theoremstyle@lemma}{}
-\newcommand{\mylib@theoremstyle@corollary}{}
-\newcommand{\mylib@theoremstyle@example}{}
-\newcommand{\mylib@theoremstyle@remark}{}
-\newcommand{\mylib@theoremstyle@notation}{}
-
-\newcommand{\mylib@registertheoremoptions}[2]{%
-  \expandafter\def\csname mylib@theoremoptions@#1\endcsname{#2}%
-}
-
-\newcommand{\mylib@theoremoptions}[1]{%
-  \csname mylib@theoremoptions@#1\endcsname
-}
-
-\newcommand{\mylib@registertheoremstyle}[2]{%
-  \expandafter\def\csname mylib@theoremstyle@#1\endcsname{#2}%
-}
-
-\newcommand{\mylib@theoremstyle}[1]{%
-  \csname mylib@theoremstyle@#1\endcsname
-}
 
 \newcommand{\mylib@theoremname}[1]{%
   \csname mylib@theoremname@#1\endcsname

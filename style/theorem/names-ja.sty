@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theorem/names-ja}[2026/10/11 Japanese theorem names]
+
+% Japanese display names for the common semantic theorem interface.
+% The theorem styles and backends remain language-independent.
+\RequirePackage{theorem/common}
+
+\makeatletter
+\renewcommand{\mylib@theoremname@definition}{定義}
+\renewcommand{\mylib@theoremname@theorem}{定理}
+\renewcommand{\mylib@theoremname@proposition}{命題}
+\renewcommand{\mylib@theoremname@lemma}{補題}
+\renewcommand{\mylib@theoremname@corollary}{系}
+\renewcommand{\mylib@theoremname@example}{例}
+\renewcommand{\mylib@theoremname@remark}{注意}
+\renewcommand{\mylib@theoremname@notation}{記法}
+\renewcommand{\mylib@theoremname@proof}{証明}
+\makeatother
+
+\endinput

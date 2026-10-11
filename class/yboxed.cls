@@ -10,9 +10,8 @@
 \ProcessKeyvalOptions*
 
 
-% --- These \DeclareOption lines mark eqnumbering/thmnumbering as
-%     “handled here” so they will not be forwarded to the parent class
-%     (article). This prevents unknown option warnings from article. ---
+% These \DeclareOption lines mark eqnumbering/thmnumbering as “handled here” so they will not be forwarded to the parent class (article).
+% This prevents unknown option warnings from article.
 \DeclareOption{eqnumbering=global}{}
 \DeclareOption{eqnumbering=section}{}
 \DeclareOption{eqnumbering=subsection}{}

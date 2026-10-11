@@ -8,9 +8,8 @@
 \DeclareStringOption[global]{thmnumbering}
 \ProcessKeyvalOptions*
 
-% --- These \DeclareOption lines mark eqnumbering/thmnumbering as
-%     “handled here” so they will not be forwarded to the parent class
-%     (jlreq). This prevents unknown option warnings from jlreq. -------------
+% These \DeclareOption lines mark eqnumbering/thmnumbering as “handled here” so they will not be forwarded to the parent class (jlreq).
+% This prevents unknown option warnings from jlreq.
 \DeclareOption{eqnumbering=global}{}
 \DeclareOption{eqnumbering=section}{}
 \DeclareOption{eqnumbering=subsection}{}

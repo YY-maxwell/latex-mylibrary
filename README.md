@@ -1,49 +1,60 @@
-# LaTeX classes and styles
+# mylibrary
 
-Personal LaTeX classes and packages for Japanese and English documents.
+Personal LaTeX classes and styles for mathematical documents.
 
-## Engines
+## Current English classes
 
-- `jynormal`, `jyboxed`, `jyplain`, and `jyreport` are for LuaLaTeX.
-- `ynormal` and `yboxed` are for LuaLaTeX.
-- `jnormal` is for XeLaTeX and is based on `bxjsarticle`.
+The current interface is provided by:
 
-The math font package uses New Computer Modern Math and Euler Math. Japanese font packages are engine-specific: LuaLaTeX uses `luatexja`; XeLaTeX uses `xeCJK` and Harano Aji fonts.
+- `normal`: theorem environments implemented with `amsthm`;
+- `boxed`: theorem and proof environments implemented with `tcolorbox`.
 
-## Install
+Both classes use the same document-side environment names:
+`definition`, `theorem`, `proposition`, `lemma`, `corollary`, `example`,
+`remark`, `notation`, and `proof`.
 
-Copy this directory to a TeX tree searched by TeX, for example `~/Library/texmf/tex/latex/mylibrary`. Compile Japanese classes with their designated engine.
-
-```sh
-latexmk -lualatex sample.tex
-latexmk -xelatex sample.tex
-```
-
-## `jnormal` numbering
+The author writes `\qed` explicitly in a proof.  The two classes accept the
+same theorem syntax, for example:
 
 ```latex
-\documentclass[
-  numbering=shared,
-  numberwithin=section,
-  equations=all
-]{jnormal}
-```
-
-- `numbering=shared|independent` controls whether theorem-like environments share the equation counter.
-- `numberwithin=global|section|subsection` controls counter resets.
-- `equations=all|referenced` controls whether every numbered equation is displayed or only referenced equations are displayed.
-
-The defaults are `shared`, `section`, and `all`.
-
-Numbered environments take a heading and a label key:
-
-```latex
-\begin{definition}{A definition}{sample}
+\begin{definition}[A definition]
+\label{def:sample}
 ...
 \end{definition}
 ```
 
-The class adds environment-specific label prefixes (`def:`, `thm:`, `prop:`, `cor:`, `lem:`, and `ex:`). Pass an empty second argument to generate the key from the environment counter.
+## Numbering options
+
+```latex
+\documentclass[
+  numbering=separate,
+  numberwithin=section,
+]{normal}
+```
+
+- `numbering=separate|shared` controls whether theorem and equation counters
+  are independent or shared;
+- `numberwithin=global|section|subsection` sets the default reset unit;
+- `thmnumberwithin=global|section|subsection` overrides it for theorems;
+- `eqnumberwithin=global|section|subsection` overrides it for equations.
+
+If the last two options are omitted, both inherit `numberwithin`.
+
+## Templates and installation
+
+The copyable document template is maintained in the notes workspace, not in
+this library:
+
+```text
+notes/templates/template.tex
+notes/templates/preamble.tex
+```
+
+Copy `template.tex` when starting a document.  Use `preamble.tex` as a
+settings cookbook when changing margins, links, page styles, or numbering.
+
+Copy this directory to a TeX tree searched by TeX, for example
+`~/Library/texmf/tex/latex/mylibrary`.
 
 ## Directory layout
 
@@ -56,3 +67,7 @@ style/
   boxstyle/  Box and theorem appearance styles
   toc/       Table-of-contents styles
 ```
+
+Japanese classes and engine-specific font settings are being migrated to this
+same interface.  The older Japanese classes currently in the tree are not the
+specification for the new interface.

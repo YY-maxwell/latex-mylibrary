@@ -1,0 +1,14 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{math/equation}[2026/10/11 Equation tag typography]
+
+% This command formats the complete parenthesized equation tag.
+% The default leaves the appearance of English classes unchanged.
+\newcommand{\mylibequationtagfont}[1]{#1}
+
+\makeatletter
+\renewcommand{\tagform@}[1]{%
+  \maketag@@@{\mylibequationtagfont{(\ignorespaces#1\unskip\@@italiccorr)}}%
+}
+\makeatother
+
+\endinput

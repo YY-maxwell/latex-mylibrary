@@ -7,17 +7,6 @@
 
   "latex-workshop.latex.tools": [
     {
-      "name": "latexmk-pdflatex",
-      "command": "latexmk",
-      "args": [
-        "-pdf",
-        "-interaction=nonstopmode",
-        "-halt-on-error",
-        "-outdir=%OUTDIR%",
-        "%DOC%"
-      ]
-    },
-    {
       "name": "latexmk-lualatex",
       "command": "latexmk",
       "args": [
@@ -42,10 +31,6 @@
   ],
 
   "latex-workshop.latex.recipes": [
-    {
-      "name": "latexmk-pdflatex",
-      "tools": ["latexmk-pdflatex"]
-    },
     {
       "name": "latexmk-lualatex",
       "tools": ["latexmk-lualatex"]

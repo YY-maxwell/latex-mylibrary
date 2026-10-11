@@ -1,6 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fonts/math-newcm-euler}[2026/10/07 New Computer Modern and Euler math fonts]
 
+\RequirePackage{iftex}
+
+\ifPDFTeX
+  \PackageError{fonts/math-newcm-euler}
+    {This package requires LuaLaTeX or XeLaTeX}
+    {Compile the document with LuaLaTeX or XeLaTeX.}
+\fi
+
 \RequirePackage{fontspec}
 \RequirePackage{unicode-math}
 \setmathfont{NewCMMath-Regular.otf}
