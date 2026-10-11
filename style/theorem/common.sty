@@ -40,6 +40,8 @@
 % The theorem styles use this command for the heading font.
 % Language-specific theorem packages may redefine it before a style is materialized.
 \newcommand{\mylibtheoremheadfont}{\bfseries}
+\newcommand{\mylibtheoremnotefont}{}
+\newcommand{\mylibtheoremnote}[1]{{\mylibtheoremnotefont #1}}
 \newcommand{\mylibtheoremreffont}[1]{#1}
 \newcommand{\parenref}[1]{\mylibtheoremreffont{(\ref{#1})}}
 

@@ -148,13 +148,13 @@
 
 \NewDocumentEnvironment{remark}{o}
   {\IfValueTF{#1}
-    {\begin{tcolorbox}[\mylib@theoremoptions{remark},title={\mylib@theoremname{remark}\ #1}]}
+    {\begin{tcolorbox}[\mylib@theoremoptions{remark},title={\mylib@theoremname{remark}\ \mylibtheoremnote{#1}}]}
     {\begin{tcolorbox}[\mylib@theoremoptions{remark},title={\mylib@theoremname{remark}}]}}
   {\end{tcolorbox}}
 
 \NewDocumentEnvironment{notation}{o}
   {\IfValueTF{#1}
-    {\begin{tcolorbox}[\mylib@theoremoptions{notation},title={\mylib@theoremname{notation}\ #1}]}
+    {\begin{tcolorbox}[\mylib@theoremoptions{notation},title={\mylib@theoremname{notation}\ \mylibtheoremnote{#1}}]}
     {\begin{tcolorbox}[\mylib@theoremoptions{notation},title={\mylib@theoremname{notation}}]}}
   {\end{tcolorbox}}
 
