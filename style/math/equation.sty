@@ -1,14 +1,26 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{math/equation}[2026/10/11 Equation tag typography]
 
+\RequirePackage{mathtools}
+
+% This command formats all reference text.  theorem/common.sty may redefine it
+% after this package has been loaded, so the equation tag follows the same
+% language-specific reference font at document time.
+\providecommand{\mylibreffont}[1]{#1}
+
 % This command formats the complete parenthesized equation tag.
 % The default leaves the appearance of English classes unchanged.
-\newcommand{\mylibequationtagfont}[1]{#1}
+\newcommand{\mylibequationtagfont}[1]{\mylibreffont{#1}}
 
 \makeatletter
 \renewcommand{\tagform@}[1]{%
   \maketag@@@{\mylibequationtagfont{(\ignorespaces#1\unskip\@@italiccorr)}}%
 }
 \makeatother
+
+% Apply this after the custom \tagform@ has been installed, so mathtools can
+% retain that formatter when it hides unreferenced equation tags.  Documents
+% may override this later with \mathtoolsset{showonlyrefs=false}.
+\mathtoolsset{showonlyrefs=true}
 
 \endinput

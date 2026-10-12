@@ -1,11 +1,27 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{theorem/typography-ja}[2026/10/11 Japanese theorem typography]
 
-% Japanese theorem headings and parenthesized references use sans-serif fonts.
+% Japanese theorem headings, bodies, and references use the Japanese profile.
 \RequirePackage{theorem/common}
 
 \renewcommand{\mylibtheoremheadfont}{\sffamily\bfseries}
 \renewcommand{\mylibtheoremnotefont}{\sffamily\mdseries}
-\renewcommand{\mylibtheoremreffont}[1]{\textsf{#1}}
+\renewcommand{\mylibtheorembodyfont}{\upshape}
+\renewcommand{\mylibreffont}[1]{\textsf{#1}}
+\renewcommand{\mylibtheoremreffont}[1]{\mylibreffont{#1}}
+
+% Make ordinary and starred \ref output use the same reference font while
+% preserving hyperref's link and star behavior.  hyperref is loaded before
+% this language-specific package by the document classes.
+\makeatletter
+\let\mylib@originalref\ref
+\RenewDocumentCommand\ref{s m}{%
+  \mylibreffont{%
+    \IfBooleanTF{#1}
+      {\mylib@originalref*{#2}}
+      {\mylib@originalref{#2}}%
+  }%
+}
+\makeatother
 
 \endinput

@@ -1,7 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fonts/japanese-luatex}[2026/10/11 Japanese fonts for LuaLaTeX]
 
-% bxjsarticle selects the standard Harano Aji families before this package.
+% Use separate Mincho and Gothic families so \bfseries does not silently
+% change a Mincho paragraph into a Gothic paragraph.
 \RequirePackage{luatexja}
 \RequirePackage{luatexja-fontspec}
+\setmainjfont[
+  BoldFont=HaranoAjiMincho-Bold.otf,
+  JFM=ujis
+]{HaranoAjiMincho-Regular.otf}
+\setsansjfont[
+  BoldFont=HaranoAjiGothic-Bold.otf,
+  JFM=ujis
+]{HaranoAjiGothic-Regular.otf}
 \RequirePackage{fonts/japanese-emphasis}

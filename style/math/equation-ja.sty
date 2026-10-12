@@ -1,9 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{math/equation-ja}[2026/10/11 Japanese equation tag typography]
 
-% Japanese equation tags use a regular sans-serif font.
+% Japanese equation tags use the common reference font.
 \RequirePackage{math/equation}
 
-\renewcommand{\mylibequationtagfont}[1]{\textsf{#1}}
+\renewcommand{\mylibequationtagfont}[1]{\mylibreffont{#1}}
 
 \endinput

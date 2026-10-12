@@ -1,6 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{fonts/japanese-xetex}[2026/10/11 Japanese fonts for XeLaTeX]
 
-% bxjsarticle selects the standard Harano Aji families before this package.
+% Use separate Mincho and Gothic families so \bfseries does not silently
+% change a Mincho paragraph into a Gothic paragraph.
 \RequirePackage{xeCJK}
+\setCJKmainfont[
+  BoldFont=HaranoAjiMincho-Bold.otf,
+  AutoFakeSlant=0.2
+]{HaranoAjiMincho-Regular.otf}
+\setCJKsansfont[
+  BoldFont=HaranoAjiGothic-Bold.otf,
+  AutoFakeSlant=0.2
+]{HaranoAjiGothic-Regular.otf}
 \RequirePackage{fonts/japanese-emphasis}
