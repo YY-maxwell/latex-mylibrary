@@ -1,6 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{layout/page-margins}[2026/10/07 default settings for margins]
+\ProvidesPackage{layout/page-margins}[2026/10/11 default settings for margins]
 
-% Some Japanese classes load geometry before user packages.
-\@ifpackageloaded{geometry}{}{\RequirePackage{geometry}}
-\geometry{left=25truemm,right=25truemm,top=25truemm,bottom=25truemm}
+\@ifundefined{setpagelayout}{%
+  \@ifpackageloaded{geometry}{}{\RequirePackage{geometry}}%
+  \geometry{%
+    left=25truemm,
+    right=25truemm,
+    top=25truemm,
+    bottom=25truemm
+  }%
+}{%
+  % Preserve the base layout of bxjs classes while replacing their dimensions.
+  \setpagelayout+{%
+    left=25truemm,
+    right=25truemm,
+    top=25truemm,
+    bottom=25truemm
+  }%
+}

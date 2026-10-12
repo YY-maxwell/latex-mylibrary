@@ -30,6 +30,8 @@
 \ifLuaTeX
   \PassOptionsToClass{lualatex,ja=standard}{bxjsarticle}
 \else\ifXeTeX
+  % Let bxjsarticle define the CJK families, but retain slanted emphasis.
+  \PassOptionsToPackage{AutoFakeSlant=0.2}{xeCJK}
   \PassOptionsToClass{xelatex,ja=standard}{bxjsarticle}
 \else
   \ClassError{jboxed}{Unsupported engine}{Use LuaLaTeX or XeLaTeX to compile this class.}

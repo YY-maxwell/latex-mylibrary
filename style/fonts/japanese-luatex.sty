@@ -1,16 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonts/japanese-luatex}[2026/10/07 Japanese fonts for LuaLaTeX]
+\ProvidesPackage{fonts/japanese-luatex}[2026/10/11 Japanese fonts for LuaLaTeX]
 
+% bxjsarticle selects the standard Harano Aji families before this package.
 \RequirePackage{luatexja}
 \RequirePackage{luatexja-fontspec}
-\setmainjfont[
-  BoldFont={HaranoAjiMincho-Bold.otf},
-  ItalicFont={HaranoAjiMincho-Regular.otf},
-  ItalicFeatures={FakeSlant=0.2},
-  BoldItalicFont={HaranoAjiMincho-Bold.otf},
-  BoldItalicFeatures={FakeSlant=0.2}
-]{HaranoAjiMincho-Regular.otf}
-\setsansjfont[
-  BoldFont={HaranoAjiGothic-Bold.otf}
-]{HaranoAjiGothic-Medium.otf}
 \RequirePackage{fonts/japanese-emphasis}

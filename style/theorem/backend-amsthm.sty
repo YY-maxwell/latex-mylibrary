@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{theorem/backend-amsthm}[2026/10/09 amsthm theorem backend]
+\ProvidesPackage{theorem/backend-amsthm}[2026/10/11 amsthm theorem backend]
 
 % This backend materializes the semantic theorem interface using amsthm. theorem/normal.sty must be loaded first so that theorem styles are registered.
 
@@ -32,6 +32,10 @@
   }%
 }
 
+% Unnumbered starred forms use the same styles and display names as their
+% numbered counterparts.  They do not create or advance a counter.
+\newtheorem*{definition*}{\mylib@theoremname{definition}}
+
 \theoremstyle{\mylib@theoremstyle{theorem}}
 \ifdefstring{\mylibtheorem@numbering}{shared}{%
   \newtheorem{theorem}[equation]{\mylib@theoremname{theorem}}
@@ -44,6 +48,10 @@
   \newtheorem{lemma}[definition]{\mylib@theoremname{lemma}}
   \newtheorem{corollary}[definition]{\mylib@theoremname{corollary}}
 }
+\newtheorem*{theorem*}{\mylib@theoremname{theorem}}
+\newtheorem*{proposition*}{\mylib@theoremname{proposition}}
+\newtheorem*{lemma*}{\mylib@theoremname{lemma}}
+\newtheorem*{corollary*}{\mylib@theoremname{corollary}}
 
 \theoremstyle{\mylib@theoremstyle{example}}
 \ifdefstring{\mylibtheorem@numbering}{shared}{%
@@ -51,6 +59,7 @@
 }{%
   \newtheorem{example}[definition]{\mylib@theoremname{example}}
 }
+\newtheorem*{example*}{\mylib@theoremname{example}}
 
 \theoremstyle{\mylib@theoremstyle{remark}}
 \newtheorem*{remark}{\mylib@theoremname{remark}}

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{theorem/backend-tcolorbox}[2026/10/09 tcolorbox theorem backend]
+\ProvidesPackage{theorem/backend-tcolorbox}[2026/10/11 tcolorbox theorem backend]
 
 % This is an implementation layer.
 % It materializes the semantic theorem interface and the style registry supplied by theorem/common.sty.
@@ -145,6 +145,57 @@
     {\begin{mylib@example}{}{}}%
     \mylib@setcurrentlabel}
   {\end{mylib@example}}
+
+% Unnumbered starred forms.  These are separate tcolorboxes rather than
+% theorem counters, so they never advance or expose a theorem number.
+\newtcolorbox{mylib@definition@star}[1][]{%
+  \mylib@theoremoptions{definition},#1}
+\newtcolorbox{mylib@theorem@star}[1][]{%
+  \mylib@theoremoptions{theorem},#1}
+\newtcolorbox{mylib@proposition@star}[1][]{%
+  \mylib@theoremoptions{proposition},#1}
+\newtcolorbox{mylib@lemma@star}[1][]{%
+  \mylib@theoremoptions{lemma},#1}
+\newtcolorbox{mylib@corollary@star}[1][]{%
+  \mylib@theoremoptions{corollary},#1}
+\newtcolorbox{mylib@example@star}[1][]{%
+  \mylib@theoremoptions{example},#1}
+
+\NewDocumentEnvironment{definition*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@definition@star}[title={\mylib@theoremname{definition}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@definition@star}[title={\mylib@theoremname{definition}}]}}
+  {\end{mylib@definition@star}}
+
+\NewDocumentEnvironment{theorem*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@theorem@star}[title={\mylib@theoremname{theorem}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@theorem@star}[title={\mylib@theoremname{theorem}}]}}
+  {\end{mylib@theorem@star}}
+
+\NewDocumentEnvironment{proposition*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@proposition@star}[title={\mylib@theoremname{proposition}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@proposition@star}[title={\mylib@theoremname{proposition}}]}}
+  {\end{mylib@proposition@star}}
+
+\NewDocumentEnvironment{lemma*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@lemma@star}[title={\mylib@theoremname{lemma}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@lemma@star}[title={\mylib@theoremname{lemma}}]}}
+  {\end{mylib@lemma@star}}
+
+\NewDocumentEnvironment{corollary*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@corollary@star}[title={\mylib@theoremname{corollary}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@corollary@star}[title={\mylib@theoremname{corollary}}]}}
+  {\end{mylib@corollary@star}}
+
+\NewDocumentEnvironment{example*}{o}
+  {\IfValueTF{#1}
+    {\begin{mylib@example@star}[title={\mylib@theoremname{example}\ \mylibtheoremnote{#1}}]}
+    {\begin{mylib@example@star}[title={\mylib@theoremname{example}}]}}
+  {\end{mylib@example@star}}
 
 \NewDocumentEnvironment{remark}{o}
   {\IfValueTF{#1}
