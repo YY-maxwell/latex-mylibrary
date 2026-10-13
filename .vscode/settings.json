@@ -3,6 +3,7 @@
   // Select the engine explicitly because the test classes use different engines.
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/test/build",
   "latex-workshop.latex.recipe.default": "latexmk-lualatex",
   "latex-workshop.latex.autoBuild.run": "never",

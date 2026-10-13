@@ -3,24 +3,26 @@
 
 
 \tcbset{
-    % 黒枠で囲む
-    simpleboxed/.style = {
-        enhanced,% tikz系のコマンドに必要
-        attach boxed title to top left = {% タイトルボックスの位置
-            xshift=3mm, yshift=-3mm
-        },%
-        colback = black!3!white,% 背景の色
-        colframe = black,% 枠の色
-        boxsep = 0pt,
-        left = 2.5mm,
-        right = 2.5mm,
-        top = 4mm,% 枠と内側の本文との間隔
-        bottom = 4mm,
-        boxrule = 1pt,% ← 枠の太さ
-        coltitle = black,% タイトルの文字の色        
-        boxed title style = {%ボックスの中の設定
-            colframe = black,%
-            colback = black!3!white%
-        }%
-    }
+  % 黒枠で囲む
+  simpleboxed/.style = {
+    enhanced,% tikz系のコマンドに必要
+    attach boxed title to top left = {% タイトルボックスの位置
+      xshift=3mm, yshift=-3mm
+    },%
+    colback = black!3!white,% 背景の色
+    colframe = black,% 枠の色
+    boxsep = 0pt,
+    left = 10pt,
+    right = 10pt,
+    top = 15pt,% 枠線上部と本文との間隔
+    bottom = 10pt,% 枠線下部と本文との間隔
+    boxrule = 1pt,% ← 枠の太さ
+    coltitle = black,% タイトルの文字の色        
+    boxed title style = {%ボックスの中の設定
+      colframe = black,%
+      colback = black!3!white%
+    },
+    before skip = 10pt,
+    after skip = 10pt
+  }
 }
