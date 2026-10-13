@@ -1,0 +1,37 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{layout/sectioning-ja}
+  [2026/10/13 Japanese sectioning format]
+
+\RequirePackage{titlesec}
+
+
+% section
+\titleformat{\section}
+  {\Large\gtfamily\sffamily}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}
+  {0pt}
+  {20pt}
+  {10pt}
+
+
+% subsection
+\titleformat{\subsection}
+  {\large\gtfamily\sffamily}
+  {\thesubsection}
+  {1em}
+  {}
+
+
+% subsubsection
+\titleformat{\subsubsection}
+  {\large\gtfamily\sffamily}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titlespacing*{\subsubsection}
+  {0pt}
+  {10pt}
+  {8pt}

@@ -69,6 +69,7 @@
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
+\RequirePackage{layout/sectioning-ja}
 
 \makeatother
 

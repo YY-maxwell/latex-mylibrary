@@ -68,6 +68,7 @@
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
+\RequirePackage{layout/sectioning-ja}
 
 \makeatother
 

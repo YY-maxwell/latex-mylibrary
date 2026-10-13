@@ -3,6 +3,17 @@
 
 \RequirePackage{tocloft}
 
+% cfttitlefont → 
+% cftsecfont → 
+% cftsubsecfont → 
+% cftsubsubsecfont → 
+
+% 目次の深さのデフォルト設定
+\setcounter{tocdepth}{3}
+
+%
+\renewcommand{\cfttoctitlefont}{\sffamily\LARGE}
+
 
 % --- セクション部分 --- 
 \@ifundefined{cftsecfont}{}{
@@ -13,7 +24,7 @@
 
 % --- サブセクション部分 --- 
 \@ifundefined{cftsubsecfont}{}{
-    \renewcommand{\cftsubsecfont}{\sffamily}% サブセクション名
+    \renewcommand{\cftsubsecfont}{\sffamily\gtfamily}% サブセクション名
     \renewcommand{\cftsubsecpagefont}{\sffamily}% ページ番号
 }
 

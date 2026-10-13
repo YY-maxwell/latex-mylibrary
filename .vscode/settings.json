@@ -1,6 +1,8 @@
 {
   // Settings for compiling the library's own test documents.
   // Select the engine explicitly because the test classes use different engines.
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/test/build",
   "latex-workshop.latex.recipe.default": "latexmk-lualatex",
   "latex-workshop.latex.autoBuild.run": "never",
