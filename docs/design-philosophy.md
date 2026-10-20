@@ -102,8 +102,9 @@ VS Code のテンプレートやスニペット、またはプロジェクト内
 ### notes
 
 `notes` は、複数のノートを含む一つの共有ワークスペースとして扱う。
-標準のコンパイルエンジンは LuaLaTeX とする。
-必要に応じて、同じワークスペースの `.vscode/` に XeLaTeX 用の設定や recipe を置き、別のエンジンにも対応できるようにする。
+標準のコンパイルエンジンは XeLaTeX とし、同じワークスペースの設定や recipe から LuaLaTeX も選択できるようにする。
+この変更は、既存の `latex-mynotes/.vscode/settings.json` で XeLaTeX が既に標準に設定されていることに合わせ、研究ノートのエディタ設定、Codex の作業規約、GitHub Actions の既定値を統一するためである。
+従来の LuaLaTeX を標準とする判断はこの理由により変更するが、エンジンの選択は引き続きプロジェクト側または VS Code 側の責務とし、ライブラリ自体は LuaLaTeX と XeLaTeX の両方をサポートする。
 各ノートに個別の `latexmkrc` や `.vscode/` を置くことは、標準の運用にしない。
 
 ### papers
