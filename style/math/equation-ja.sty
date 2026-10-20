@@ -3,7 +3,25 @@
 
 % Japanese equation tags use the common reference font.
 \RequirePackage{math/equation}
+\RequirePackage{iftex}
 
 \renewcommand{\mylibequationtagfont}[1]{\mylibreffont{#1}}
+
+% Under XeTeX, avoid the tag-form expansion used by mathtools' \eqref.
+% \refeq still records the reference for showonlyrefs.  Use the hyperref
+% definition of \ref captured here, before typography-ja adds its font,
+% so the complete parenthesized reference gets that font only once.
+\ifXeTeX
+  \makeatletter
+  \let\mylib@equation@ref\ref
+  \RenewDocumentCommand{\eqref}{m}{%
+    % Match amsmath's boxed tag without adding italic correction before it.
+    \textup{\nocorr
+      \let\ref\mylib@equation@ref
+      \hbox{\normalfont\mylibequationtagfont{(\refeq{#1})}}%
+    }%
+  }
+  \makeatother
+\fi
 
 \endinput
