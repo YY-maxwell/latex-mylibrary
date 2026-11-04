@@ -66,6 +66,7 @@
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
+\RequirePackage{equation/tag-font}
 \RequirePackage{layout/sectioning-ja}
 
 \makeatother

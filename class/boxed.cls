@@ -43,7 +43,7 @@
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
-
+\RequirePackage{equation/tag-font}
 \makeatother
 
 \endinput

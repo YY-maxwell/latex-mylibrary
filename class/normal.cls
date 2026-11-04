@@ -45,6 +45,7 @@
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
+\RequirePackage{equation/tag-font}
 
 \makeatother
 

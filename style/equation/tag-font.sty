@@ -1,0 +1,7 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{equation/tag-font}[2026/11/05 Equation tag font]
+\RequirePackage{mathtools}
+\newcommand{\mylibequationtagfont}[1]{\textsf{#1}}
+\newtagform{mylib}[\mylibequationtagfont]{\mylibequationtagfont{(}}{\mylibequationtagfont{)}}
+\usetagform{mylib}
+\endinput

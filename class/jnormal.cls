@@ -67,6 +67,7 @@
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
+\RequirePackage{equation/tag-font}
 \RequirePackage{layout/sectioning-ja}
 
 \makeatother

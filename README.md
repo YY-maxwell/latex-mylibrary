@@ -108,21 +108,32 @@ style/
   layout/    Page margins, headings, and running headers
   boxstyle/  Box and theorem appearance styles
   theorem/   Theorem backends and their shared interface
+  equation/  Equation tag font settings
   toc/       Table-of-contents styles
 ```
 
-## References
+## References and equation tags
 
-The standard `\ref` and `\eqref` commands retain their usual behavior.
-Use `\paref{label}` for a parenthesized reference.
-By default, the parentheses and reference number use a sans-serif font.
-Only the reference number is hyperlinked.
-The font can be changed in the document preamble:
+The standard `\ref` and `\eqref` commands remain available.
 
+Use `\paref{label}` for a parenthesized reference. By default, the parentheses and reference number use a sans-serif font. Only the reference number is hyperlinked.
+
+Equation tags, including automatic equation numbers and explicit `\tag{...}` labels, also use a sans-serif font by default. Their formatting is defined in `style/equation/tag-font.sty`, which is loaded automatically by the current document classes.
+
+The two font settings can be customized independently in the document preamble:
+
+```latex
 \renewcommand{\mylibpareffont}[1]{\textnormal{#1}}
+\renewcommand{\mylibequationtagfont}[1]{\textnormal{#1}}
+```
 
-Equation numbering uses the standard amsmath/mathtools behavior.
-The `showonlyrefs` option is disabled by default.
+The equation tag format also controls the appearance of `\eqref{...}`. To restore the standard `amsmath` tag format, use:
+
+```latex
+\usetagform{default}
+```
+
+The original `\ref` behavior is preserved. The `showonlyrefs` option is not enabled by default.
 
 ## Legacy classes
 
