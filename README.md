@@ -107,10 +107,22 @@ style/
   fonts/     Math fonts and engine-specific Japanese fonts
   layout/    Page margins, headings, and running headers
   boxstyle/  Box and theorem appearance styles
-  math/      Mathematical notation and operators
   theorem/   Theorem backends and their shared interface
   toc/       Table-of-contents styles
 ```
+
+## References
+
+The standard `\ref` and `\eqref` commands retain their usual behavior.
+Use `\paref{label}` for a parenthesized reference.
+By default, the parentheses and reference number use a sans-serif font.
+Only the reference number is hyperlinked.
+The font can be changed in the document preamble:
+
+\renewcommand{\mylibpareffont}[1]{\textnormal{#1}}
+
+Equation numbering uses the standard amsmath/mathtools behavior.
+The `showonlyrefs` option is disabled by default.
 
 ## Legacy classes
 
