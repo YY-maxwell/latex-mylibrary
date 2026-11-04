@@ -45,11 +45,7 @@
 % English profiles keep the traditional italic body; language-specific profiles may change it.
 \newcommand{\mylibtheorembodyfont}{\itshape}
 \newcommand{\mylibtheoremnote}[1]{{\mylibtheoremnotefont #1}}
-%    % All user-visible references go through this formatter.  It is defined here
-%    % because equation.sty is loaded before this package in the document classes.
-%    \providecommand{\mylibreffont}[1]{#1}
-%    \newcommand{\mylibtheoremreffont}[1]{\mylibreffont{#1}}
-%    \newcommand{\parenref}[1]{\mylibtheoremreffont{(\ref{#1})}}
+
 
 % The proof environments in both backends use the same manually inserted QED symbol.
 % Each backend binds the public \qed command after loading its own implementation package, because amsthm provides \qedsymbol while the tcolorbox backend does not.
