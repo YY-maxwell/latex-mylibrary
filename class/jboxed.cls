@@ -54,7 +54,6 @@
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-ja}
 \RequirePackage{core/hyperlinks}
-%\RequirePackage{math/equation}
 
 \ifLuaTeX
   \RequirePackage{fonts/japanese-luatex}
@@ -63,7 +62,6 @@
 \fi
 
 \RequirePackage{theorem/common}
-\RequirePackage{math/equation-ja}
 \RequirePackage{theorem/names-ja}
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/boxed}

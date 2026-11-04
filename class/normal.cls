@@ -42,7 +42,6 @@
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-eng}
 \RequirePackage{core/hyperlinks}
-\RequirePackage{math/equation}
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
