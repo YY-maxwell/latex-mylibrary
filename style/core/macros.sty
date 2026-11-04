@@ -215,3 +215,12 @@
         \setlength{\partopsep}{0pt}%
     }\item\relax}
     {\end{list}}
+
+  
+% ========================================================================
+% References
+% ========================================================================
+\newcommand{\mylibpareffont}[1]{\textsf{#1}}
+\newcommand{\paref}[1]{
+  \mylibpareffont{(\hyperref[#1]{\ref*{#1}})}
+}

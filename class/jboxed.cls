@@ -54,7 +54,7 @@
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-ja}
 \RequirePackage{core/hyperlinks}
-\RequirePackage{math/equation}
+%\RequirePackage{math/equation}
 
 \ifLuaTeX
   \RequirePackage{fonts/japanese-luatex}
