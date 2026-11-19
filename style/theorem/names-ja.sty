@@ -4,6 +4,7 @@
 % Japanese display names for the common semantic theorem interface.
 % The theorem styles and backends remain language-independent.
 \RequirePackage{theorem/common}
+\RequirePackage{core/references}
 
 \makeatletter
 \renewcommand{\mylib@theoremname@definition}{定義}
@@ -16,5 +17,24 @@
 \renewcommand{\mylib@theoremname@notation}{記法}
 \renewcommand{\mylib@theoremname@proof}{証明}
 \makeatother
+
+\crefname{definition}{\mylibrefnamefont{定義}}{\mylibrefnamefont{定義}}
+\crefname{theorem}{\mylibrefnamefont{定理}}{\mylibrefnamefont{定理}}
+\crefname{proposition}{\mylibrefnamefont{命題}}{\mylibrefnamefont{命題}}
+\crefname{lemma}{\mylibrefnamefont{補題}}{\mylibrefnamefont{補題}}
+\crefname{corollary}{\mylibrefnamefont{系}}{\mylibrefnamefont{系}}
+\crefname{example}{\mylibrefnamefont{例}}{\mylibrefnamefont{例}}
+\crefname{equation}{\mylibrefnamefont{式}}{\mylibrefnamefont{式}}
+\crefname{section}{\mylibrefnamefont{節}}{\mylibrefnamefont{節}}
+\crefname{subsection}{\mylibrefnamefont{小節}}{\mylibrefnamefont{小節}}
+\Crefname{definition}{\mylibrefnamefont{定義}}{\mylibrefnamefont{定義}}
+\Crefname{theorem}{\mylibrefnamefont{定理}}{\mylibrefnamefont{定理}}
+\Crefname{proposition}{\mylibrefnamefont{命題}}{\mylibrefnamefont{命題}}
+\Crefname{lemma}{\mylibrefnamefont{補題}}{\mylibrefnamefont{補題}}
+\Crefname{corollary}{\mylibrefnamefont{系}}{\mylibrefnamefont{系}}
+\Crefname{example}{\mylibrefnamefont{例}}{\mylibrefnamefont{例}}
+\Crefname{equation}{\mylibrefnamefont{式}}{\mylibrefnamefont{式}}
+\Crefname{section}{\mylibrefnamefont{節}}{\mylibrefnamefont{節}}
+\Crefname{subsection}{\mylibrefnamefont{小節}}{\mylibrefnamefont{小節}}
 
 \endinput

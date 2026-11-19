@@ -100,50 +100,79 @@
   {\mylib@theoremoptions{example}}
   {ex}
 
-\newcommand{\mylib@setcurrentlabel}{%
+% LaTeX's cleveref first-aid hook reads \@currentcounter at \label time.
+% Supply semantic aliases for the physical counter shared by all boxes.
+\ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \def\mylib@tcbphysicalcounter{equation}%
+}{%
+  \def\mylib@tcbphysicalcounter{mylib@definition}%
+}
+\newcommand{\mylib@aliastcbcounter}[1]{%
+  \csletcs{c@#1}{c@\mylib@tcbphysicalcounter}%
+  \csletcs{the#1}{the\mylib@tcbphysicalcounter}%
+  \csletcs{p@#1}{p@\mylib@tcbphysicalcounter}%
+  \ifdefstring{\mylib@thmnumberwithin}{section}{%
+    \@addtoreset{#1}{section}%
+  }{%
+    \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
+      \@addtoreset{#1}{subsection}%
+    }{}%
+  }%
+}
+\mylib@aliastcbcounter{definition}
+\mylib@aliastcbcounter{theorem}
+\mylib@aliastcbcounter{proposition}
+\mylib@aliastcbcounter{lemma}
+\mylib@aliastcbcounter{corollary}
+\mylib@aliastcbcounter{example}
+
+\newcommand{\mylib@setcurrentlabel}[1]{%
   \protected@edef\@currentlabel{\thetcbcounter}%
+  % The tcolorbox "label type" key affects its own label key, not a
+  % document-side \label placed after \begin.
+  \mylib@setcreftype{#1}%
 }
 
 \NewDocumentEnvironment{definition}{o}
   {\IfValueTF{#1}
     {\begin{mylib@definition}{#1}{}{}}
     {\begin{mylib@definition}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{definition}}
   {\end{mylib@definition}}
 
 \NewDocumentEnvironment{theorem}{o}
   {\IfValueTF{#1}
     {\begin{mylib@theorem}{#1}{}{}}
     {\begin{mylib@theorem}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{theorem}}
   {\end{mylib@theorem}}
 
 \NewDocumentEnvironment{proposition}{o}
   {\IfValueTF{#1}
     {\begin{mylib@proposition}{#1}{}{}}
     {\begin{mylib@proposition}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{proposition}}
   {\end{mylib@proposition}}
 
 \NewDocumentEnvironment{lemma}{o}
   {\IfValueTF{#1}
     {\begin{mylib@lemma}{#1}{}{}}
     {\begin{mylib@lemma}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{lemma}}
   {\end{mylib@lemma}}
 
 \NewDocumentEnvironment{corollary}{o}
   {\IfValueTF{#1}
     {\begin{mylib@corollary}{#1}{}{}}
     {\begin{mylib@corollary}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{corollary}}
   {\end{mylib@corollary}}
 
 \NewDocumentEnvironment{example}{o}
   {\IfValueTF{#1}
     {\begin{mylib@example}{#1}{}{}}
     {\begin{mylib@example}{}{}}%
-    \mylib@setcurrentlabel}
+    \mylib@setcurrentlabel{example}}
   {\end{mylib@example}}
 
 % Unnumbered starred forms.  These are separate tcolorboxes rather than

@@ -103,7 +103,7 @@ Copy this directory to a TeX tree searched by TeX, for example
 ```text
 class/       Document classes
 style/
-  core/      Engine-independent packages and macros
+  core/      Engine-independent packages, macros, and references
   fonts/     Math fonts and engine-specific Japanese fonts
   layout/    Page margins, headings, and running headers
   boxstyle/  Box and theorem appearance styles
@@ -114,26 +114,51 @@ style/
 
 ## References and equation tags
 
-The standard `\ref` and `\eqref` commands remain available.
-
-Use `\paref{label}` for a parenthesized reference. By default, the parentheses and reference number use a sans-serif font. Only the reference number is hyperlinked.
-
-Equation tags, including automatic equation numbers and explicit `\tag{...}` labels, also use a sans-serif font by default. Their formatting is defined in `style/equation/tag-font.sty`, which is loaded automatically by the current document classes.
-
-The two font settings can be customized independently in the document preamble:
+The four current classes load `cleveref` automatically. Use `\cref` for a
+named reference and `\labelcref` for its parenthesized number:
 
 ```latex
-\renewcommand{\mylibpareffont}[1]{\textnormal{#1}}
-\renewcommand{\mylibequationtagfont}[1]{\textnormal{#1}}
+\cref{lem:a}                 % Lemma (2.5), or 補題 (2.5)
+\Cref{lem:a}                 % Lemma (2.5), or 補題 (2.5)
+\labelcref{lem:a}            % (2.5)
+\cref{lem:a,lem:b}           % Lemmas (2.5) and (2.8)
+\crefrange{lem:a}{lem:c}     % Lemmas (2.5)–(2.9)
 ```
 
-The equation tag format also controls the appearance of `\eqref{...}`. To restore the standard `amsmath` tag format, use:
+For Japanese classes the names are Japanese, for example 定理, 補題, and 式.
+The reference type comes from the environment containing `\label`, not the
+label's spelling. This also holds when theorems and equations share a counter.
+Only the number inside each pair of parentheses is linked. The reference
+format is configured in `style/core/references.sty`; Japanese names are in
+`style/theorem/names-ja.sty`.
+
+`\cref{lem:a,eq:b}` can combine different reference types. The standard
+`cleveref` commands `\labelcref{...}` (with multiple labels) and `\crefrange`
+require all labels in the call to have the same type; use separate calls for
+different types.
+
+Three independent preamble settings default to sans-serif:
 
 ```latex
-\usetagform{default}
+\renewcommand{\mylibrefnamefont}[1]{\textbf{#1}}
+\renewcommand{\mylibrefnumberfont}[1]{\textsf{#1}}
+\renewcommand{\mylibequationtagfont}[1]{\textrm{#1}}
 ```
 
-The original `\ref` behavior is preserved. The `showonlyrefs` option is not enabled by default.
+`\mylibrefnamefont` styles names such as Lemma, Equation, and Section;
+`\mylibrefnumberfont` styles the number and parentheses in `\cref` and
+`\labelcref`; `\mylibequationtagfont` styles displayed equation numbers
+and explicit `\tag{...}` tags. The latter is defined in
+`style/equation/tag-font.sty`.
+
+The standard `\ref`, `\eqref`, and `\tag` remain available and are not
+redefined. The equation tag format also controls `\eqref`, independently of
+`\mylibrefnumberfont`. To restore the standard `amsmath` tag format, use
+`\usetagform{default}`. The `showonlyrefs` option is not enabled by default.
+
+Replace the former `\paref{label}` with `\labelcref{label}`. Replace
+`\mylibpareffont` settings with `\mylibrefnumberfont` settings; the name
+font can be configured separately.
 
 ## Legacy classes
 

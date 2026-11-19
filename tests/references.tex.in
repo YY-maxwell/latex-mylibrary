@@ -1,0 +1,27 @@
+\documentclass[numbering=@NUMBERING@,numberwithin=@WITHIN@]{@CLASS@}
+@FONT_SETTINGS@
+\begin{document}
+\section{First}\label{sec:first}
+\subsection{Part}\label{sub:first}
+\begin{definition}[Optional title]\label{r:def}Definition body.\end{definition}
+\begin{theorem}\label{r:thm}Theorem body.\end{theorem}
+\begin{proposition}\label{r:prop}Proposition body.\end{proposition}
+\begin{lemma}\label{r:lem}Lemma body.\end{lemma}
+\begin{corollary}\label{r:cor}Corollary body.\end{corollary}
+\begin{example}\label{r:ex}Example body.\end{example}
+\begin{equation}\label{r:eq}1=1\end{equation}
+\begin{align}2&=2\label{r:align}\end{align}
+\begin{equation}\tag{A}\label{r:tag}3=3\end{equation}
+\begin{lemma}\label{r:lem-two}Second lemma.\end{lemma}
+\begin{lemma}\label{r:lem-three}Third lemma.\end{lemma}
+
+Single: \cref{r:lem}. Capital: \Cref{r:lem}. Bare: \labelcref{r:lem}.
+Equation: \cref{r:eq}. Align: \cref{r:align}. Tag: \cref{r:tag}.
+Multiple: \cref{r:lem,r:lem-three}. Bare multiple: \labelcref{r:lem,r:lem-three}.
+Range: \crefrange{r:lem}{r:lem-three}. Mixed: \cref{r:lem,r:eq}.
+Structure: \cref{sec:first,sub:first}.
+Standard: \ref{r:lem}, \eqref{r:eq}, \ref{r:tag}, \eqref{r:tag}.
+\section{Second}\label{sec:second}
+\begin{lemma}\label{r:late}Later lemma.\end{lemma}
+Ordered: \cref{r:late,r:lem}.
+\end{document}

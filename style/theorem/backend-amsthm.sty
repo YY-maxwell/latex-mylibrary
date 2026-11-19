@@ -61,6 +61,73 @@
 }
 \newtheorem*{example*}{\mylib@theoremname{example}}
 
+% amsthm steps the shared counter inside \@thm.  Set the reference type
+% immediately after each public environment begins, including optional titles.
+\ifdefstring{\mylibtheorem@numbering}{shared}{%
+  \def\mylib@amsthmcounter{equation}%
+}{%
+  \def\mylib@amsthmcounter{definition}%
+}
+\newcommand{\mylib@aliasamsthmcounter}[1]{%
+  \csletcs{c@#1}{c@\mylib@amsthmcounter}%
+  \csletcs{p@#1}{p@\mylib@amsthmcounter}%
+  \ifdefstring{\mylib@thmnumberwithin}{section}{%
+    \@addtoreset{#1}{section}%
+  }{%
+    \ifdefstring{\mylib@thmnumberwithin}{subsection}{%
+      \@addtoreset{#1}{subsection}%
+    }{}%
+  }%
+}
+\mylib@aliasamsthmcounter{definition}
+\mylib@aliasamsthmcounter{theorem}
+\mylib@aliasamsthmcounter{proposition}
+\mylib@aliasamsthmcounter{lemma}
+\mylib@aliasamsthmcounter{corollary}
+\mylib@aliasamsthmcounter{example}
+
+\let\mylib@begindefinition\definition
+\let\mylib@enddefinition\enddefinition
+\RenewDocumentEnvironment{definition}{o}
+  {\IfValueTF{#1}{\mylib@begindefinition[#1]}{\mylib@begindefinition}%
+   \mylib@setcreftype{definition}}
+  {\mylib@enddefinition}
+
+\let\mylib@begintheorem\theorem
+\let\mylib@endtheorem\endtheorem
+\RenewDocumentEnvironment{theorem}{o}
+  {\IfValueTF{#1}{\mylib@begintheorem[#1]}{\mylib@begintheorem}%
+   \mylib@setcreftype{theorem}}
+  {\mylib@endtheorem}
+
+\let\mylib@beginproposition\proposition
+\let\mylib@endproposition\endproposition
+\RenewDocumentEnvironment{proposition}{o}
+  {\IfValueTF{#1}{\mylib@beginproposition[#1]}{\mylib@beginproposition}%
+   \mylib@setcreftype{proposition}}
+  {\mylib@endproposition}
+
+\let\mylib@beginlemma\lemma
+\let\mylib@endlemma\endlemma
+\RenewDocumentEnvironment{lemma}{o}
+  {\IfValueTF{#1}{\mylib@beginlemma[#1]}{\mylib@beginlemma}%
+   \mylib@setcreftype{lemma}}
+  {\mylib@endlemma}
+
+\let\mylib@begincorollary\corollary
+\let\mylib@endcorollary\endcorollary
+\RenewDocumentEnvironment{corollary}{o}
+  {\IfValueTF{#1}{\mylib@begincorollary[#1]}{\mylib@begincorollary}%
+   \mylib@setcreftype{corollary}}
+  {\mylib@endcorollary}
+
+\let\mylib@beginexample\example
+\let\mylib@endexample\endexample
+\RenewDocumentEnvironment{example}{o}
+  {\IfValueTF{#1}{\mylib@beginexample[#1]}{\mylib@beginexample}%
+   \mylib@setcreftype{example}}
+  {\mylib@endexample}
+
 \theoremstyle{\mylib@theoremstyle{remark}}
 \newtheorem*{remark}{\mylib@theoremname{remark}}
 \newtheorem*{notation}{\mylib@theoremname{notation}}

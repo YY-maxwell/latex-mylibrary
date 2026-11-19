@@ -40,6 +40,7 @@
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-eng}
 \RequirePackage{core/hyperlinks}
+\RequirePackage{core/references}
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
