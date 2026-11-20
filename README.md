@@ -132,8 +132,9 @@ label's spelling. This also holds when theorems and equations share a counter.
 Only the number inside each pair of parentheses is linked. The reference
 format, fonts, and link range are configured in `style/references/core.sty`.
 English and Japanese reference names and conjunctions are in
-`style/references/names-en.sty` and `style/references/names-ja.sty`,
-respectively. `style/theorem/names-ja.sty` contains theorem heading names.
+`style/references/locale-en.sty` and `style/references/locale-ja.sty`,
+respectively. `style/theorem/heading-text-ja.sty` contains theorem heading
+names; `style/theorem/typography-ja.sty` contains Japanese typography settings.
 
 `\cref{lem:a,eq:b}` can combine different reference types. The standard
 `cleveref` commands `\labelcref{...}` (with multiple labels) and `\crefrange`

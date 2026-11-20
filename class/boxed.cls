@@ -41,7 +41,7 @@
 \RequirePackage{toc/toc-eng}
 \RequirePackage{core/hyperlinks}
 \RequirePackage{references/core}
-\RequirePackage{references/names-en}
+\RequirePackage{references/locale-en}
 \RequirePackage{theorem/common}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}

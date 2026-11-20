@@ -55,7 +55,7 @@
 \RequirePackage{toc/toc-ja}
 \RequirePackage{core/hyperlinks}
 \RequirePackage{references/core}
-\RequirePackage{references/names-ja}
+\RequirePackage{references/locale-ja}
 
 \ifLuaTeX
   \RequirePackage{fonts/japanese-luatex}
@@ -64,9 +64,7 @@
 \fi
 
 \RequirePackage{theorem/common}
-% Both language files end in names-ja.sty; \RequirePackage treats the second
-% basename as already loaded. Input the theorem headings explicitly.
-\input{theorem/names-ja.sty}
+\RequirePackage{theorem/heading-text-ja}
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
