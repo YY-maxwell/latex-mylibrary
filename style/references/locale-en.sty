@@ -1,0 +1,35 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{references/locale-en}[2026/11/20 English reference names]
+\RequirePackage{references/core}
+
+\crefname{definition}{\mylibrefnamefont{Definition}}{\mylibrefnamefont{Definitions}}
+\crefname{theorem}{\mylibrefnamefont{Theorem}}{\mylibrefnamefont{Theorems}}
+\crefname{proposition}{\mylibrefnamefont{Proposition}}{\mylibrefnamefont{Propositions}}
+\crefname{lemma}{\mylibrefnamefont{Lemma}}{\mylibrefnamefont{Lemmas}}
+\crefname{corollary}{\mylibrefnamefont{Corollary}}{\mylibrefnamefont{Corollaries}}
+\crefname{example}{\mylibrefnamefont{Example}}{\mylibrefnamefont{Examples}}
+\crefname{equation}{\mylibrefnamefont{Equation}}{\mylibrefnamefont{Equations}}
+\crefname{section}{\mylibrefnamefont{Section}}{\mylibrefnamefont{Sections}}
+\crefname{subsection}{\mylibrefnamefont{Subsection}}{\mylibrefnamefont{Subsections}}
+% Explicit capitalized names avoid cleveref's \MakeUppercase wrapper around
+% a user-configurable font command.
+\Crefname{definition}{\mylibrefnamefont{Definition}}{\mylibrefnamefont{Definitions}}
+\Crefname{theorem}{\mylibrefnamefont{Theorem}}{\mylibrefnamefont{Theorems}}
+\Crefname{proposition}{\mylibrefnamefont{Proposition}}{\mylibrefnamefont{Propositions}}
+\Crefname{lemma}{\mylibrefnamefont{Lemma}}{\mylibrefnamefont{Lemmas}}
+\Crefname{corollary}{\mylibrefnamefont{Corollary}}{\mylibrefnamefont{Corollaries}}
+\Crefname{example}{\mylibrefnamefont{Example}}{\mylibrefnamefont{Examples}}
+\Crefname{equation}{\mylibrefnamefont{Equation}}{\mylibrefnamefont{Equations}}
+\Crefname{section}{\mylibrefnamefont{Section}}{\mylibrefnamefont{Sections}}
+\Crefname{subsection}{\mylibrefnamefont{Subsection}}{\mylibrefnamefont{Subsections}}
+
+% Preserve cleveref's English multiple-reference conjunctions.
+\AtBeginDocument{%
+  \renewcommand{\crefpairconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefmiddleconjunction}{, }%
+  \renewcommand{\creflastconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefpairgroupconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefmiddlegroupconjunction}{, }%
+  \renewcommand{\creflastgroupconjunction}{, and\nobreakspace}%
+}
+\endinput

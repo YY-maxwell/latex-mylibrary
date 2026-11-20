@@ -55,6 +55,8 @@
 \RequirePackage{layout/head-foot}
 \RequirePackage{toc/toc-ja}
 \RequirePackage{core/hyperlinks}
+\RequirePackage{references/core}
+\RequirePackage{references/locale-ja}
 
 \ifLuaTeX
   \RequirePackage{fonts/japanese-luatex}
@@ -63,7 +65,7 @@
 \fi
 
 \RequirePackage{theorem/common}
-\RequirePackage{theorem/names-ja}
+\RequirePackage{theorem/heading-text-ja}
 \RequirePackage{theorem/typography-ja}
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}

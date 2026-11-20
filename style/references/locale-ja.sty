@@ -1,0 +1,33 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{references/locale-ja}[2026/11/20 Japanese reference names]
+\RequirePackage{references/core}
+
+\crefname{definition}{\mylibrefnamefont{定義}}{\mylibrefnamefont{定義}}
+\crefname{theorem}{\mylibrefnamefont{定理}}{\mylibrefnamefont{定理}}
+\crefname{proposition}{\mylibrefnamefont{命題}}{\mylibrefnamefont{命題}}
+\crefname{lemma}{\mylibrefnamefont{補題}}{\mylibrefnamefont{補題}}
+\crefname{corollary}{\mylibrefnamefont{系}}{\mylibrefnamefont{系}}
+\crefname{example}{\mylibrefnamefont{例}}{\mylibrefnamefont{例}}
+\crefname{equation}{\mylibrefnamefont{式}}{\mylibrefnamefont{式}}
+\crefname{section}{\mylibrefnamefont{節}}{\mylibrefnamefont{節}}
+\crefname{subsection}{\mylibrefnamefont{小節}}{\mylibrefnamefont{小節}}
+\Crefname{definition}{\mylibrefnamefont{定義}}{\mylibrefnamefont{定義}}
+\Crefname{theorem}{\mylibrefnamefont{定理}}{\mylibrefnamefont{定理}}
+\Crefname{proposition}{\mylibrefnamefont{命題}}{\mylibrefnamefont{命題}}
+\Crefname{lemma}{\mylibrefnamefont{補題}}{\mylibrefnamefont{補題}}
+\Crefname{corollary}{\mylibrefnamefont{系}}{\mylibrefnamefont{系}}
+\Crefname{example}{\mylibrefnamefont{例}}{\mylibrefnamefont{例}}
+\Crefname{equation}{\mylibrefnamefont{式}}{\mylibrefnamefont{式}}
+\Crefname{section}{\mylibrefnamefont{節}}{\mylibrefnamefont{節}}
+\Crefname{subsection}{\mylibrefnamefont{小節}}{\mylibrefnamefont{小節}}
+
+% Japanese conjunctions for multiple references.
+\AtBeginDocument{%
+  \renewcommand{\crefpairconjunction}{および}%
+  \renewcommand{\crefmiddleconjunction}{，}%
+  \renewcommand{\creflastconjunction}{，および}%
+  \renewcommand{\crefpairgroupconjunction}{および}%
+  \renewcommand{\crefmiddlegroupconjunction}{，}%
+  \renewcommand{\creflastgroupconjunction}{，および}%
+}
+\endinput
