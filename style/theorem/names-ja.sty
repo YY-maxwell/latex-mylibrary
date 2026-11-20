@@ -36,5 +36,13 @@
 \Crefname{equation}{\mylibrefnamefont{式}}{\mylibrefnamefont{式}}
 \Crefname{section}{\mylibrefnamefont{節}}{\mylibrefnamefont{節}}
 \Crefname{subsection}{\mylibrefnamefont{小節}}{\mylibrefnamefont{小節}}
-
+% Japanese conjunctions for multiple references.
+\AtBeginDocument{%
+  \renewcommand{\crefpairconjunction}{および}%
+  \renewcommand{\crefmiddleconjunction}{，}%
+  \renewcommand{\creflastconjunction}{，および}%
+  \renewcommand{\crefpairgroupconjunction}{および}%
+  \renewcommand{\crefmiddlegroupconjunction}{，}%
+  \renewcommand{\creflastgroupconjunction}{，および}%
+}
 \endinput
