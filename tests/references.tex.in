@@ -19,6 +19,7 @@ Single: \cref{r:lem}. Capital: \Cref{r:lem}. Bare: \labelcref{r:lem}.
 Equation: \cref{r:eq}. Align: \cref{r:align}. Tag: \cref{r:tag}.
 Multiple: \cref{r:lem,r:lem-three}. Bare multiple: \labelcref{r:lem,r:lem-three}.
 Range: \crefrange{r:lem}{r:lem-three}. Mixed: \cref{r:lem,r:eq}.
+Triple: \cref{r:lem,r:lem-two,r:lem-three}.
 Structure: \cref{sec:first,sub:first}.
 Standard: \ref{r:lem}, \eqref{r:eq}, \ref{r:tag}, \eqref{r:tag}.
 \section{Second}\label{sec:second}

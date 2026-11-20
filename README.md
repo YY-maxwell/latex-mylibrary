@@ -103,7 +103,8 @@ Copy this directory to a TeX tree searched by TeX, for example
 ```text
 class/       Document classes
 style/
-  core/      Engine-independent packages, macros, and references
+  core/      Engine-independent packages, macros, and hyperlinks
+  references/ Common cleveref format and language-specific reference names
   fonts/     Math fonts and engine-specific Japanese fonts
   layout/    Page margins, headings, and running headers
   boxstyle/  Box and theorem appearance styles
@@ -129,8 +130,10 @@ For Japanese classes the names are Japanese, for example 定理, 補題, and 式
 The reference type comes from the environment containing `\label`, not the
 label's spelling. This also holds when theorems and equations share a counter.
 Only the number inside each pair of parentheses is linked. The reference
-format is configured in `style/core/references.sty`; Japanese names are in
-`style/theorem/names-ja.sty`.
+format, fonts, and link range are configured in `style/references/core.sty`.
+English and Japanese reference names and conjunctions are in
+`style/references/names-en.sty` and `style/references/names-ja.sty`,
+respectively. `style/theorem/names-ja.sty` contains theorem heading names.
 
 `\cref{lem:a,eq:b}` can combine different reference types. The standard
 `cleveref` commands `\labelcref{...}` (with multiple labels) and `\crefrange`
@@ -156,9 +159,10 @@ redefined. The equation tag format also controls `\eqref`, independently of
 `\mylibrefnumberfont`. To restore the standard `amsmath` tag format, use
 `\usetagform{default}`. The `showonlyrefs` option is not enabled by default.
 
-Replace the former `\paref{label}` with `\labelcref{label}`. Replace
-`\mylibpareffont` settings with `\mylibrefnumberfont` settings; the name
-font can be configured separately.
+For new documents, use `\labelcref{label}` in place of `\paref{label}`, and
+configure `\mylibrefnumberfont` in place of `\mylibpareffont`. `\paref` and
+`\mylibpareffont` remain available for existing documents; the new name font
+can be configured separately.
 
 ## Legacy classes
 

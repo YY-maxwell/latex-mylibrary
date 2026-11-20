@@ -1,22 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{core/references}[2026/11/19 Cleveref reference formatting]
-
-% Load after hyperref, before the theorem environments are declared.
-\RequirePackage[capitalise]{cleveref}
-
-\newcommand{\mylibrefnamefont}[1]{\textsf{#1}}
-\newcommand{\mylibrefnumberfont}[1]{\textsf{#1}}
-
-% In cleveref's formats, #2 and #3 begin and end the hyperlink.  Keep
-% the name and parentheses outside it for single, multiple and range refs.
-\crefdefaultlabelformat{\mylibrefnumberfont{(#2#1#3)}}
-% cleveref installs an equation-specific label format, which takes precedence
-% over the default and must therefore be replaced explicitly.
-\creflabelformat{equation}{\mylibrefnumberfont{(#2#1#3)}}
-% cleveref defines this conjunction when it initializes the document language.
-\AtBeginDocument{%
-  \renewcommand{\crefrangeconjunction}{\mylibrefnumberfont{\textendash}}%
-}
+\ProvidesPackage{references/names-en}[2026/11/20 English reference names]
+\RequirePackage{references/core}
 
 \crefname{definition}{\mylibrefnamefont{Definition}}{\mylibrefnamefont{Definitions}}
 \crefname{theorem}{\mylibrefnamefont{Theorem}}{\mylibrefnamefont{Theorems}}
@@ -39,18 +23,13 @@
 \Crefname{section}{\mylibrefnamefont{Section}}{\mylibrefnamefont{Sections}}
 \Crefname{subsection}{\mylibrefnamefont{Subsection}}{\mylibrefnamefont{Subsections}}
 
-% Both theorem backends can step a shared counter (equation or definition).
-% Set the semantic type in cleveref's current-label record without changing
-% the number, sorting data, or the ordinary \label syntax.
-\makeatletter
-\newcommand{\mylib@setcreftype}[1]{%
-  % The LaTeX first-aid patch for cleveref reconstructs the type at \label
-  % from \@currentcounter.  Each backend supplies a semantic counter alias.
-  \def\@currentcounter{#1}%
-  \protected@edef\cref@currentlabel{%
-    \expandafter\cref@override@label@type
-      \cref@currentlabel\@nil{#1}}%
+% Preserve cleveref's English multiple-reference conjunctions.
+\AtBeginDocument{%
+  \renewcommand{\crefpairconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefmiddleconjunction}{, }%
+  \renewcommand{\creflastconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefpairgroupconjunction}{ and\nobreakspace}%
+  \renewcommand{\crefmiddlegroupconjunction}{, }%
+  \renewcommand{\creflastgroupconjunction}{, and\nobreakspace}%
 }
-\makeatother
-
 \endinput
