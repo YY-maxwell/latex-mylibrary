@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{fonts/japanese-xetex}[2026/10/11 Japanese fonts for XeLaTeX]
+\ProvidesPackage{fonts/japanese-xetex}[2026/11/24 Japanese fonts for XeLaTeX]
 
 % Use separate Mincho and Gothic families so \bfseries does not silently
 % change a Mincho paragraph into a Gothic paragraph.
@@ -9,6 +9,10 @@
   AutoFakeSlant=0.2
 ]{HaranoAjiMincho-Regular.otf}
 \setCJKsansfont[
+  BoldFont=HaranoAjiGothic-Bold.otf,
+  AutoFakeSlant=0.2
+]{HaranoAjiGothic-Regular.otf}
+\setCJKmonofont[
   BoldFont=HaranoAjiGothic-Bold.otf,
   AutoFakeSlant=0.2
 ]{HaranoAjiGothic-Regular.otf}
