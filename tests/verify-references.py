@@ -21,6 +21,9 @@ TYPES = {
     "r:eq": "equation",
     "r:align": "equation",
     "r:tag": "equation",
+    "r:row-used": "equation",
+    "r:inner-equation": "equation",
+    "r:inner-theorem": "theorem",
     "r:lem-two": "lemma",
     "r:lem-three": "lemma",
     "r:late": "lemma",
@@ -28,7 +31,10 @@ TYPES = {
     "sub:first": "subsection",
     "sec:second": "section",
 }
-ERRORS = re.compile(r"^!|undefined references|different types|Reference .*undefined", re.M | re.I)
+ERRORS = re.compile(
+    r"^!|undefined references|different types|Reference .*undefined|"
+    r"destination with the same identifier|duplicate ignored", re.M | re.I
+)
 
 
 def main():
@@ -66,7 +72,7 @@ def main():
                 .replace("@FONT_SETTINGS@", font_settings)
             )
             (work / f"{name}.tex").write_text(tex)
-            for _ in range(2):
+            for _ in range(3):
                 result = subprocess.run(
                     [engine, "-interaction=nonstopmode", "-halt-on-error",
                      f"-output-directory={work}", str(work / f"{name}.tex")],
@@ -84,6 +90,9 @@ def main():
                     pattern = rf"\\newlabel\{{{re.escape(label)}@cref\}}\{{\{{\[{expected}\]"
                     if not re.search(pattern, aux):
                         failures.append((name, f"wrong or missing type: {label} -> {expected}"))
+                for label in ("r:unused", "r:row-unused"):
+                    if f"\\newlabel{{{label}}}" in aux:
+                        failures.append((name, f"unreferenced equation numbered: {label}"))
                 prefix = {"global": "", "section": "1.", "subsection": "1.1."}[within]
                 lemma_number = prefix + "4"
                 equation_number = prefix + ("7" if numbering == "shared" else "1")

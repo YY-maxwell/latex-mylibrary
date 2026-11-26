@@ -1,0 +1,14 @@
+\documentclass{normal}
+\begin{document}
+\section{References}
+\cref{eq:page-two}; \Cref{eq:page-three};
+\labelcref{eq:page-two}; \ref{eq:page-three}; \eqref{eq:page-two}.
+
+\cref*{eq:page-two}; \Cref*{eq:page-three};
+\labelcref*{eq:page-two}; \ref*{eq:page-three}; \eqref*{eq:page-two}.
+\newpage
+\begin{equation}\label{eq:unused}a=b\end{equation}
+\begin{equation}\label{eq:page-two}b=c\end{equation}
+\newpage
+\begin{equation}\label{eq:page-three}c=d\end{equation}
+\end{document}

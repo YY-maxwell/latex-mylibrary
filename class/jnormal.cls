@@ -70,6 +70,7 @@
 \RequirePackage{theorem/normal}
 \RequirePackage{theorem/backend-amsthm}
 \RequirePackage{equation/tag-font}
+\RequirePackage{equation/autonum-support}
 \RequirePackage{layout/sectioning-ja}
 
 \makeatother

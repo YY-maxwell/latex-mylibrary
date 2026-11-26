@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{equation/autonum-support}[2026/11/26 Automatic equation numbering]
+
+% Load after amsmath, hyperref, cleveref, theorem backends, and tag settings.
+\RequirePackage{autonum}
+
+% autonum patches \ref and \cref itself.  Its documented helpers cover the
+% remaining cleveref commands, including comma-separated lists and starred calls.
+\makeatletter
+% amsmath's \eqref has no starred form.  Its ordinary form already calls the
+% patched \ref; provide the analogous unlinked form through \ref*.
+\LetLtxMacro\mylib@autonum@eqref\eqref
+\RenewDocumentCommand{\eqref}{s m}{%
+  \IfBooleanTF{#1}
+    {\textup{\tagform@{\ref*{#2}}}}
+    {\mylib@autonum@eqref{#2}}%
+}
+\AtBeginDocument{%
+  \autonum@generatePatchedReferenceCSL{Cref}%
+  \autonum@generatePatchedReferenceCSL{labelcref}%
+}
+\makeatother
+
+\endinput

@@ -109,13 +109,18 @@ style/
   layout/    Page margins, headings, and running headers
   boxstyle/  Box and theorem appearance styles
   theorem/   Theorem backends and their shared interface
-  equation/  Equation tag font settings
+  equation/  Automatic numbering and equation tag font settings
   toc/       Table-of-contents styles
 ```
 
 ## References and equation tags
 
-The four current classes load `cleveref` automatically. Use `\cref` for a
+The four current classes load `cleveref` and `autonum` automatically. In
+ordinary `equation`, `align`, `gather`, `multline`, `flalign`, and `alignat`
+environments, only referenced equations (or referenced rows) receive numbers.
+Put a `\label` on each equation that may need a number; for `align` and similar
+environments, put it before the row-ending `\\`. Compile until references
+stabilize, usually three runs. Use `\cref` for a
 named reference and `\labelcref` for its parenthesized number:
 
 ```latex
@@ -141,6 +146,13 @@ names; `style/theorem/typography-ja.sty` contains Japanese typography settings.
 require all labels in the call to have the same type; use separate calls for
 different types.
 
+Automatic numbering recognizes `\cref`, `\Cref`, `\labelcref`, `\ref`, and
+`\eqref`, including comma-separated labels in the `cleveref` commands. Their
+starred forms also count as references and suppress the hyperlink. `\eqref*`
+is supplied by this library because `amsmath` has no starred `\eqref`.
+`\crefrange` is not recognized by `autonum`: an equation used only as a range
+endpoint may remain unnumbered. Use separate `\cref` calls for such equations.
+
 Three independent preamble settings default to sans-serif:
 
 ```latex
@@ -155,10 +167,27 @@ Three independent preamble settings default to sans-serif:
 and explicit `\tag{...}` tags. The latter is defined in
 `style/equation/tag-font.sty`.
 
-The standard `\ref`, `\eqref`, and `\tag` remain available and are not
-redefined. The equation tag format also controls `\eqref`, independently of
+The standard `\ref` and `\eqref` retain their printed format. The equation tag
+format also controls `\eqref`, independently of
 `\mylibrefnumberfont`. To restore the standard `amsmath` tag format, use
-`\usetagform{default}`. The `showonlyrefs` option is not enabled by default.
+`\usetagform{default}`. The `showonlyrefs` option is not enabled.
+
+`autonum` removes the starred math environments such as `equation*` and
+`align*`; use the ordinary environment without a reference for an unnumbered
+display. Use `equation+`, `align+`, or another `+` variant to force numbering
+without a reference. An explicit `\tag{...}` still prints its tag even when
+unreferenced; add a reference if its `\label` must be retained. `\notag`
+suppresses numbering on its row, so a label on that row cannot be referenced.
+For `split`, place the outer equation's `\label` before `\begin{split}`.
+
+When moving an existing document to these classes, replace starred math
+environments with unstarred ones, add labels to equations that may be cited,
+and use a `+` environment for a number that must always appear. Recompile
+from clean auxiliary files when old references cause errors. The six legacy
+classes and existing notes are unchanged by this migration.
+
+Implementation notes and regression commands are in
+[`docs/autonum.md`](docs/autonum.md).
 
 For new documents, use `\labelcref{label}` in place of `\paref{label}`, and
 configure `\mylibrefnumberfont` in place of `\mylibpareffont`. `\paref` and

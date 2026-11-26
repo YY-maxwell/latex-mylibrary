@@ -2,7 +2,8 @@
 \ProvidesPackage{core/hyperlinks}[2026/10/07 settings for hyperlinks]
 
 
-\RequirePackage{hyperref}% Core package for hyperlinks and PDF metadata
+% autonum can leave equation counters unchanged; use unique hyperlink names.
+\RequirePackage[hypertexnames=false]{hyperref}% Core package for hyperlinks and PDF metadata
 \RequirePackage{bookmark}% Improves PDF bookmark handling 
 \RequirePackage{xurl}% Allows line breaks in long URLs
 

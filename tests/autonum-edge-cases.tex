@@ -1,0 +1,12 @@
+\documentclass{normal}
+\begin{document}
+\section{Cases}
+\begin{equation}\label{eq:plain}a=b\end{equation}
+\begin{equation+}\label{eq:forced}b=c\end{equation+}
+\begin{equation}\tag{custom}\label{eq:tagged}c=d\end{equation}
+\begin{align}
+  d&=e\notag\\
+  e&=f\label{eq:used}
+\end{align}
+\cref{eq:used}.
+\end{document}

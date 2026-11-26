@@ -69,6 +69,7 @@
 \RequirePackage{theorem/boxed}
 \RequirePackage{theorem/backend-tcolorbox}
 \RequirePackage{equation/tag-font}
+\RequirePackage{equation/autonum-support}
 \RequirePackage{layout/sectioning-ja}
 
 \makeatother
